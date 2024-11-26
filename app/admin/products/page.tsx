@@ -32,7 +32,7 @@ export default function ProductsPage() {
   async function handleDelete(id: number) {
     if (confirm("Are you sure you want to delete this product?")) {
       try {
-        await deleteProduct(id);
+        await deleteProduct(id.toString());
         toast.success("Product deleted successfully");
         loadProducts();
       } catch (error) {
