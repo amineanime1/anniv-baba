@@ -13,7 +13,7 @@ interface ProductPageProps {
 // Generate static params for all products
 export async function generateStaticParams() {
   const products = await getProducts();
-  return products.map((product) => ({
+  return products.map((product: { id: number }) => ({
     id: product.id.toString(),
   }));
 }
