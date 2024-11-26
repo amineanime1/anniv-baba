@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from 'react';
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
@@ -19,18 +20,23 @@ const navigation = [
   { name: "Products", href: "/admin/products", icon: Package },
   { name: "Orders", href: "/admin/orders", icon: ShoppingCart },
   { name: "Delivery", href: "/admin/delivery", icon: Truck },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  // { name: "Settings", href: "/admin/settings", icon: Settings },
 ];
-
 export function AdminSidebar() {
+  const [showConfirm, setShowConfirm] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   const handleSignOut = () => {
-    localStorage.removeItem('isAdmin');
-    router.push('/admin/login');
+    if (showConfirm) {
+      localStorage.removeItem('isAdmin');
+      document.cookie = "isAdmin=; path=/admin; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+      router.push('/admin/login');
+    } else {
+      setShowConfirm(true);
+      setTimeout(() => setShowConfirm(false), 3000); // Reset confirmation after 3 seconds
+    }
   };
-
   return (
     <div className="flex flex-col w-64 bg-card border-r">
       <div className="flex items-center justify-between h-16 px-4 border-b">
@@ -57,16 +63,12 @@ export function AdminSidebar() {
           );
         })}
       </nav>
-      <div className="flex-shrink-0 flex border-t p-4">
-        <Button
-          variant="ghost"
-          className="flex items-center w-full"
-          onClick={handleSignOut}
-        >
-          <LogOut className="mr-3 h-5 w-5" />
-          Sign out
-        </Button>
-      </div>
+      {/* <div className="flex-shrink-0 flex border-t p-4">
+      <Button variant="ghost" className="flex items-center w-full" onClick={handleSignOut}>
+  <LogOut className="mr-3 h-5 w-5" />
+  {showConfirm ? 'Click again to confirm' : 'Sign out'}
+</Button>
+      </div> */}
     </div>
   );
 }

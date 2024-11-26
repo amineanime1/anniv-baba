@@ -1,33 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ProductCard } from "@/components/products/product-card";
+import { getProducts } from "@/app/api/products";
 
-const PRODUCTS = [
-  {
-    id: 1,
-    name: "Monstera Deliciosa",
-    price: 2500,
-    category: "indoor",
-    image: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b",
-    availability: "in-stock",
-  },
-  {
-    id: 2,
-    name: "Snake Plant",
-    price: 1800,
-    category: "indoor",
-    image: "https://images.unsplash.com/photo-1593691509543-c55fb32e7355",
-    availability: "in-stock",
-  },
-  {
-    id: 3,
-    name: "Peace Lily",
-    price: 2000,
-    category: "flowering",
-    image: "https://images.unsplash.com/photo-1593691512429-7785f268b9c6",
-    availability: "in-stock",
-  },
-];
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  category: string;
+  images: string[];
+  stock: number;
+}
 
 interface ProductGridProps {
   filters: {
@@ -38,24 +22,64 @@ interface ProductGridProps {
 }
 
 export function ProductGrid({ filters }: ProductGridProps) {
-  const filteredProducts = PRODUCTS.filter((product) => {
-    if (filters.category && filters.category !== "all" && product.category !== filters.category) return false;
-    if (filters.availability && filters.availability !== "all" && product.availability !== filters.availability)
-      return false;
-    if (filters.priceRange && filters.priceRange !== "all") {
-      if (filters.priceRange === "3000-plus") {
-        if (product.price <= 3000) return false;
-      } else {
-        const [min, max] = filters.priceRange.split("-").map(Number);
-        if (product.price < min || product.price > max) return false;
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      setLoading(true);
+      try {
+        const data = await getProducts(); // Fetch all products
+        const filteredProducts = data.filter((product) => {
+          // Category filter
+          if (filters.category && filters.category !== "all" && product.category !== filters.category) {
+            return false;
+          }
+
+          // Availability filter
+          if (
+            filters.availability &&
+            filters.availability !== "all" &&
+            (filters.availability === "in-stock" ? product.stock <= 0 : product.stock > 0)
+          ) {
+            return false;
+          }
+
+          // Price range filter
+          if (filters.priceRange && filters.priceRange !== "all") {
+            if (filters.priceRange === "3000-plus") {
+              if (product.price <= 3000) return false;
+            } else {
+              const [min, max] = filters.priceRange.split("-").map(Number);
+              if (product.price < min || product.price > max) return false;
+            }
+          }
+
+          return true;
+        });
+
+        setProducts(filteredProducts);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
       }
     }
-    return true;
-  });
+
+    fetchProducts();
+  }, [filters]);
+
+  if (loading) {
+    return <p>Loading products...</p>;
+  }
+
+  if (products.length === 0) {
+    return <p>No products match the selected filters.</p>;
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {filteredProducts.map((product) => (
+      {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

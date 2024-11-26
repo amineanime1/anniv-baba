@@ -13,7 +13,10 @@ export async function getProducts() {
     .select("*")
     .order("created_at", { ascending: false });
 
-  if (error) throw error;
+    if (error) {
+      console.error("Error fetching products:", error.message);
+      throw error;
+    }
   return data as Product[];
 }
 
@@ -26,7 +29,10 @@ export async function createProduct(product: Omit<Product, "id" | "created_at" |
     .select()
     .single();
 
-  if (error) throw error;
+    if (error) {
+      console.error("Error creating product:", error.message);
+      throw error;
+    }
   return data;
 }
 

@@ -21,6 +21,7 @@ export default function LoginPage() {
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       // In a real app, we'd set a secure session/token
       localStorage.setItem('isAdmin', 'true');
+      document.cookie = "isAdmin=true; path=/admin; httpOnly: true; secure: true;  SameSite=Strict";
       router.push('/admin');
     } else {
       setError('Invalid credentials');
