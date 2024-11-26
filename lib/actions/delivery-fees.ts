@@ -1,27 +1,29 @@
 "use server";
 
-import { supabase } from "@/lib/supabase/config";
-import { Database } from "@/lib/supabase/types";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
-type DeliveryFee = Database["public"]["Tables"]["delivery_fees"]["Row"];
-
-export async function getDeliveryFee(wilaya: string) {
-  const { data, error } = await supabase
-    .from("delivery_fees")
-    .select("fee")
-    .eq("wilaya", wilaya)
-    .single();
-
-  if (error) throw error;
-  return data.fee;
+export async function getDeliveryFees() {
+  const res = await fetch(`${API_URL}/api/delivery-fees`, {
+    cache: 'no-store'
+  });
+  if (!res.ok) throw new Error("Failed to fetch delivery fees");
+  return res.json();
 }
 
-export async function getAllDeliveryFees() {
-  const { data, error } = await supabase
-    .from("delivery_fees")
-    .select("*")
-    .order("wilaya", { ascending: true });
+export async function getDeliveryFee(wilaya: string) {
+  const fees = await getDeliveryFees();
+  const fee = fees.find((f: any) => f.wilaya === wilaya);
+  return fee ? fee.fee : null;
+}
 
-  if (error) throw error;
-  return data as DeliveryFee[];
+export async function createDeliveryFee(data: any) {
+  const res = await fetch(`${API_URL}/api/delivery-fees`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error("Failed to create delivery fee");
+  return res.json();
 }

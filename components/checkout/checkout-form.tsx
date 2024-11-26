@@ -23,24 +23,28 @@ import {
 } from "@/components/ui/select";
 import { useCart } from "@/contexts/cart-context";
 import { WILAYAS } from "@/lib/constants";
+import { createOrder } from "@/lib/actions/orders";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  email: z.string().email("Please enter a valid email address"),
+  customerName: z.string().min(2, "Name must be at least 2 characters"),
+  customerPhone: z.string().min(10, "Please enter a valid phone number"),
+  customerEmail: z.string().email("Please enter a valid email address"),
   wilaya: z.string().min(1, "Please select your wilaya"),
   address: z.string().min(10, "Please enter your full address"),
   notes: z.string().optional(),
 });
 
 export function CheckoutForm() {
-  const { clearCart } = useCart();
+  const { clearCart, items, total } = useCart();
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: "",
-      phone: "",
-      email: "",
+      customerName: "",
+      customerPhone: "",
+      customerEmail: "",
       wilaya: "",
       address: "",
       notes: "",
@@ -48,10 +52,26 @@ export function CheckoutForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Here we would typically send the order to the backend
-    console.log(values);
-    clearCart();
-    // Redirect to success page or show success message
+    try {
+      const orderData = {
+        ...values,
+        items: items.map(item => ({
+          productId: item.id,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        totalAmount: total,
+        deliveryFee: 500, // Default delivery fee
+      };
+
+      await createOrder(orderData);
+      toast.success("Order placed successfully!");
+      clearCart();
+      router.push("/"); // Redirect to home or order confirmation page
+    } catch (error) {
+      console.error("Order creation error:", error);
+      toast.error("Failed to place order. Please try again.");
+    }
   }
 
   return (
@@ -59,7 +79,7 @@ export function CheckoutForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="fullName"
+          name="customerName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Full Name</FormLabel>
@@ -73,7 +93,7 @@ export function CheckoutForm() {
 
         <FormField
           control={form.control}
-          name="phone"
+          name="customerPhone"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Phone Number</FormLabel>
@@ -87,7 +107,7 @@ export function CheckoutForm() {
 
         <FormField
           control={form.control}
-          name="email"
+          name="customerEmail"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email</FormLabel>
@@ -113,7 +133,7 @@ export function CheckoutForm() {
                 </FormControl>
                 <SelectContent>
                   {WILAYAS.map((wilaya) => (
-                    <SelectItem key={wilaya.code} value={wilaya.code.toString()}>
+                    <SelectItem key={wilaya.code} value={wilaya.name}>
                       {wilaya.name}
                     </SelectItem>
                   ))}

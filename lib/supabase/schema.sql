@@ -56,8 +56,30 @@ create policy "Products are viewable by everyone" on public.products
 create policy "Orders are viewable by admin only" on public.orders
   for all using (auth.role() = 'authenticated');
 
+create policy "Orders can be created by anyone" on public.orders
+  for insert with check (true);
+
+create policy "Order items can be created by anyone" on public.order_items
+  for insert with check (true);
+
 create policy "Order items are viewable by admin only" on public.order_items
   for all using (auth.role() = 'authenticated');
 
 create policy "Delivery fees are viewable by everyone" on public.delivery_fees
   for select using (true);
+
+  CREATE POLICY "Allow status updates" ON public.orders
+FOR UPDATE
+USING (true);
+
+CREATE OR REPLACE FUNCTION public.update_product_stock(
+    p_product_id bigint,
+    p_quantity integer
+)
+RETURNS void AS $$
+BEGIN
+    UPDATE public.products
+    SET stock = stock - p_quantity
+    WHERE id = p_product_id;
+END;
+$$ LANGUAGE plpgsql;
