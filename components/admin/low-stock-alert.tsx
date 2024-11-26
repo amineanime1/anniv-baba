@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { getProducts } from "@/lib/actions/products";
 import { ArrowRight } from "lucide-react";
 
-const LOW_STOCK_THRESHOLD = 5;
+const LOW_STOCK_THRESHOLD = 10;
 
 export function LowStockAlert() {
   const [products, setProducts] = useState<any[]>([]);
@@ -27,7 +27,7 @@ export function LowStockAlert() {
           data
             .filter((p: { stock: number }) => p.stock <= LOW_STOCK_THRESHOLD)
             .sort((a: { stock: number }, b: { stock: number }) => a.stock - b.stock)
-            .slice(0, 5)
+            .slice(0, 10)
         );
       } catch (error) {
         console.error("Failed to load products:", error);
@@ -88,7 +88,7 @@ export function LowStockAlert() {
         </Link>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-4 flex flex-col">
           {products.map((product) => (
             <Link key={product.id} href={`/admin/products?id=${product.id}`}>
               <div className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
