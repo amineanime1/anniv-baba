@@ -45,7 +45,7 @@ export function AddEditProductDialog({ open, onOpenChange, product, onSuccess }:
 
     try {
       if (product) {
-        await updateProduct(product.id!, formData);
+        await updateProduct(product.id!.toString(), formData);
         toast.success("Product updated successfully");
       } else {
         await createProduct(formData);
