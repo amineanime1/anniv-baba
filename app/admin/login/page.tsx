@@ -69,6 +69,10 @@ export default function LoginPage() {
             Sign In
           </Button>
         </form>
+
+        <p className="mt-4 text-center text-md text-muted-foreground">
+          If the login doesn't work, please reload the page and try again.
+        </p>
       </div>
     </div>
   );
