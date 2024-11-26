@@ -1,12 +1,14 @@
 export interface Product {
   id: number;
   name: string;
+  description: string | null; // Allow description to be null
   price: number;
-  image: string;
+  stock: number;
   category: string;
-  availability: string;
+  images: string[];
+  created_at: string;
+  updated_at: string;
 }
-
 export interface CartItem extends Product {
   quantity: number;
 }

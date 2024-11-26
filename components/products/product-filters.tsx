@@ -25,7 +25,7 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
         <Label>Category</Label>
         <Select
           value={filters.category}
-          onValueChange={(value) =>
+          onValueChange={(value: string) =>
             setFilters({ ...filters, category: value })
           }
         >
@@ -33,7 +33,7 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
             <SelectValue placeholder="All categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All categories</SelectItem>
+            <SelectItem value="all">All categories</SelectItem>
             <SelectItem value="indoor">Indoor Plants</SelectItem>
             <SelectItem value="outdoor">Outdoor Plants</SelectItem>
             <SelectItem value="flowering">Flowering Plants</SelectItem>
@@ -46,7 +46,7 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
         <Label>Price Range</Label>
         <Select
           value={filters.priceRange}
-          onValueChange={(value) =>
+          onValueChange={(value: string) =>
             setFilters({ ...filters, priceRange: value })
           }
         >
@@ -54,11 +54,11 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
             <SelectValue placeholder="All prices" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All prices</SelectItem>
+            <SelectItem value="all">All prices</SelectItem>
             <SelectItem value="0-1000">Under 1000 DZD</SelectItem>
             <SelectItem value="1000-2000">1000-2000 DZD</SelectItem>
             <SelectItem value="2000-3000">2000-3000 DZD</SelectItem>
-            <SelectItem value="3000-999999">Over 3000 DZD</SelectItem>
+            <SelectItem value="3000-plus">Over 3000 DZD</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -67,7 +67,7 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
         <Label>Availability</Label>
         <Select
           value={filters.availability}
-          onValueChange={(value) =>
+          onValueChange={(value: string) =>
             setFilters({ ...filters, availability: value })
           }
         >
@@ -75,7 +75,7 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
             <SelectValue placeholder="All" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All</SelectItem>
+            <SelectItem value="all">All</SelectItem>
             <SelectItem value="in-stock">In Stock</SelectItem>
             <SelectItem value="out-of-stock">Out of Stock</SelectItem>
           </SelectContent>

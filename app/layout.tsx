@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="fr"  suppressHydrationWarning>
       <body className={`${playfair.variable} ${lato.variable} font-sans min-h-screen flex flex-col`}>
         <ThemeProvider
           attribute="class"

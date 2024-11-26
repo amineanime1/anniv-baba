@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { CartSheet } from "./cart/cart-sheet";
+import { ThemeToggle } from "./theme-toggle";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,11 +35,13 @@ export function Navbar() {
             <Link href="/contact" className="text-foreground/80 hover:text-foreground">
               Contact
             </Link>
+            <ThemeToggle />
             <CartSheet />
           </div>
 
           {/* Mobile Navigation Button */}
           <div className="flex md:hidden">
+            <ThemeToggle />
             <CartSheet />
             <Button
               variant="ghost"

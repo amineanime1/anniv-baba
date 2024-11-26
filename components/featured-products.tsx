@@ -13,7 +13,7 @@ const FEATURED_PRODUCTS = [
     id: 2,
     name: "Snake Plant",
     price: "1800 DZD",
-    image: "https://images.unsplash.com/photo-1593691509543-c55fb32e7355?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   },
   {
     id: 3,

@@ -27,7 +27,6 @@ const PRODUCTS = [
     image: "https://images.unsplash.com/photo-1593691512429-7785f268b9c6",
     availability: "in-stock",
   },
-  // Add more products here
 ];
 
 interface ProductGridProps {
@@ -40,12 +39,16 @@ interface ProductGridProps {
 
 export function ProductGrid({ filters }: ProductGridProps) {
   const filteredProducts = PRODUCTS.filter((product) => {
-    if (filters.category && product.category !== filters.category) return false;
-    if (filters.availability && product.availability !== filters.availability)
+    if (filters.category && filters.category !== "all" && product.category !== filters.category) return false;
+    if (filters.availability && filters.availability !== "all" && product.availability !== filters.availability)
       return false;
-    if (filters.priceRange) {
-      const [min, max] = filters.priceRange.split("-").map(Number);
-      if (product.price < min || product.price > max) return false;
+    if (filters.priceRange && filters.priceRange !== "all") {
+      if (filters.priceRange === "3000-plus") {
+        if (product.price <= 3000) return false;
+      } else {
+        const [min, max] = filters.priceRange.split("-").map(Number);
+        if (product.price < min || product.price > max) return false;
+      }
     }
     return true;
   });

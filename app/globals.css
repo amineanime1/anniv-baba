@@ -61,3 +61,25 @@
 .font-playfair {
   font-family: var(--font-playfair);
 }
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -200% 0%;
+  }
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    to right,
+    hsl(var(--primary)) 0%,
+    hsl(var(--primary)) 33%,
+    hsl(var(--primary)/0.8) 50%,
+    hsl(var(--primary)) 67%,
+    hsl(var(--primary)) 100%
+  );
+  animation: shimmer 2s linear infinite;
+}
