@@ -17,7 +17,7 @@ export function CartItem({ item }: CartItemProps) {
     <div className="flex gap-4">
       <div className="relative h-24 w-24 overflow-hidden rounded-md">
         <Image
-          src={item.image}
+          src={item.images[0]}
           alt={item.name}
           fill
           className="object-cover"

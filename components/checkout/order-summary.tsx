@@ -21,7 +21,7 @@ export function OrderSummary() {
             <div key={item.id} className="flex items-center gap-4">
               <div className="relative h-16 w-16 overflow-hidden rounded-md">
                 <Image
-                  src={item.image}
+                  src={item.images[0]}
                   alt={item.name}
                   fill
                   className="object-cover"
