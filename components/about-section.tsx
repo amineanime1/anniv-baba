@@ -23,6 +23,13 @@ export function AboutSection() {
               fill
               className="object-cover"
             />
+            <motion.div
+              className="absolute inset-0 bg-primary/10"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            />
           </motion.div>
 
           <motion.div
@@ -34,29 +41,52 @@ export function AboutSection() {
           >
             <h2 className="text-3xl font-playfair font-bold">Our Story</h2>
             <div className="space-y-4 text-foreground/80">
-              <p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 Welcome to Grandpa's Plant Shop, where our passion for plants meets decades of gardening expertise. 
                 What started as a small family garden has blossomed into Algeria's trusted source for quality plants 
                 and expert advice.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 Our mission is simple: to share the joy of gardening and help create beautiful, green spaces in homes 
                 across Algeria. Every plant in our collection is carefully selected and nurtured to ensure it thrives 
                 in its new home.
-              </p>
-              <p>
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 With years of experience in plant care and cultivation, we're not just selling plants – we're 
                 sharing knowledge and passion that spans generations.
-              </p>
+              </motion.p>
             </div>
-            <Link href="/about">
-              <Button variant="outline" size="lg">
-                Learn More About Us
-              </Button>
-            </Link>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <Link href="/about">
+                <Button variant="outline" size="lg">
+                  Learn More About Us
+                </Button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>
     </section>
   );
 }
+
