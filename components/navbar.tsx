@@ -3,98 +3,81 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { CartSheet } from "./cart/cart-sheet";
 import { ThemeToggle } from "./theme-toggle";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const NavLinks = () => (
+    <>
+      <Link href="/products" className="text-foreground/80 hover:text-foreground">
+        Products
+      </Link>
+      <Link href="/categories" className="text-foreground/80 hover:text-foreground">
+        Categories
+      </Link>
+      <Link href="/about" className="text-foreground/80 hover:text-foreground">
+        About
+      </Link>
+      <Link href="/contact" className="text-foreground/80 hover:text-foreground">
+        Contact
+      </Link>
+    </>
+  );
 
   return (
-    <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <nav className={cn(
+      "sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+      isScrolled && "shadow-sm"
+    )}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-playfair font-bold text-primary">
+            <Link href="/" className="text-xl sm:text-2xl font-playfair font-bold text-primary">
               Grandpa&apos;s Plant Shop
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-8">
-            <Link href="/products" className="text-foreground/80 hover:text-foreground">
-              Products
-            </Link>
-            <Link href="/categories" className="text-foreground/80 hover:text-foreground">
-              Categories
-            </Link>
-            <Link href="/about" className="text-foreground/80 hover:text-foreground">
-              About
-            </Link>
-            <Link href="/contact" className="text-foreground/80 hover:text-foreground">
-              Contact
-            </Link>
+            <NavLinks />
             <ThemeToggle />
             <CartSheet />
           </div>
 
-          {/* Mobile Navigation Button */}
-          <div className="flex md:hidden">
+          {/* Mobile Navigation */}
+          <div className="flex items-center space-x-4 md:hidden">
             <ThemeToggle />
             <CartSheet />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-              className="ml-2"
-            >
-              {isOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        <div
-          className={cn(
-            "md:hidden",
-            isOpen ? "block" : "hidden"
-          )}
-        >
-          <div className="space-y-1 pb-3 pt-2">
-            <Link
-              href="/products"
-              className="block px-3 py-2 text-foreground/80 hover:text-foreground"
-              onClick={() => setIsOpen(false)}
-            >
-              Products
-            </Link>
-            <Link
-              href="/categories"
-              className="block px-3 py-2 text-foreground/80 hover:text-foreground"
-              onClick={() => setIsOpen(false)}
-            >
-              Categories
-            </Link>
-            <Link
-              href="/about"
-              className="block px-3 py-2 text-foreground/80 hover:text-foreground"
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="block px-3 py-2 text-foreground/80 hover:text-foreground"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <div className="flex flex-col space-y-6 mt-8">
+                  <NavLinks />
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>

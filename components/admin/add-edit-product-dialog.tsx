@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -21,6 +21,8 @@ import {
 import { createProduct, updateProduct } from "@/lib/actions/products";
 import { toast } from "sonner";
 import { ImageUpload } from "./image-upload";
+import { X } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Category {
   value: string;
@@ -59,6 +61,14 @@ export function AddEditProductDialog({
     }
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleImagesUploaded = (urls: string[]) => {
     setFormData((prev: typeof formData) => ({ ...prev, images: urls }));
@@ -104,13 +114,28 @@ export function AddEditProductDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>
+        <DialogHeader className={cn(
+          "flex-row items-center justify-between",
+          isMobile && "sticky top-0 bg-background/95 backdrop-blur z-10 px-4 py-3 border-b"
+        )}>
+          <DialogTitle className="text-xl">
             {product ? "Edit Product" : "Add New Product"}
           </DialogTitle>
+          {isMobile && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onOpenChange(false)}
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          )}
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-4">
+        <div className={cn(
+            "space-y-4",
+            isMobile && "px-4"
+          )}>
             <div className="space-y-2">
               <Label htmlFor="name">Name *</Label>
               <Input
@@ -119,6 +144,7 @@ export function AddEditProductDialog({
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
+                 className="h-12 text-base"
                 required
               />
             </div>
@@ -131,10 +157,14 @@ export function AddEditProductDialog({
                 onChange={(e) =>
                   setFormData({ ...formData, description: e.target.value })
                 }
+                className="min-h-[100px] text-base"
               />
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
+         
+            <div className={cn(
+              "grid gap-4",
+              isMobile ? "grid-cols-1" : "grid-cols-2"
+            )}>
               <div className="space-y-2">
                 <Label htmlFor="price">Price (DZD) *</Label>
                 <Input
@@ -146,11 +176,12 @@ export function AddEditProductDialog({
                   }
                   required
                   min="0"
+                  className="h-12 text-base"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="stock">Stock</Label>
+                <Label htmlFor="stock" className="text-base">Stock</Label>
                 <Input
                   id="stock"
                   type="number"
@@ -159,12 +190,13 @@ export function AddEditProductDialog({
                     setFormData({ ...formData, stock: e.target.value })
                   }
                   min="0"
+                   className="h-12 text-base"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label>Category *</Label>
+              <Label className="text-base">Category *</Label>
               <Select
                 value={formData.category}
                 onValueChange={(value) =>
@@ -172,12 +204,12 @@ export function AddEditProductDialog({
                 }
                 required
               >
-                <SelectTrigger>
+                <SelectTrigger className="h-12 text-base">
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
                 <SelectContent>
                   {CATEGORIES.map((category) => (
-                    <SelectItem key={category.value} value={category.value}>
+                    <SelectItem key={category.value} value={category.value} className="text-base py-3">
                       {category.label}
                     </SelectItem>
                   ))}
@@ -186,7 +218,7 @@ export function AddEditProductDialog({
             </div>
 
             <div className="space-y-2">
-              <Label>Product Images</Label>
+              <Label className="text-base">Product Images</Label>
               <ImageUpload
                 onImagesUploaded={handleImagesUploaded}
                 existingImages={formData.images}
@@ -194,16 +226,25 @@ export function AddEditProductDialog({
             </div>
           </div>
 
-          <div className="flex justify-end space-x-2">
-            <Button
-              variant="outline"
-              onClick={() => onOpenChange(false)}
-              type="button"
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Saving..." : product ? "Update" : "Create"}
+          <div className={cn(
+            "flex justify-end space-x-2",
+            isMobile && "sticky bottom-0 bg-background/95 backdrop-blur z-10 px-4 py-3 border-t mt-auto"
+          )}>
+             {!isMobile && (
+              <Button
+                variant="outline"
+                onClick={() => onOpenChange(false)}
+                type="button"
+                className="h-12"
+              >
+                Cancel
+              </Button>
+            )}
+            <Button type="submit" disabled={isLoading}   className={cn(
+                "h-12 text-base",
+                isMobile && "flex-1"
+              )}>
+              {isLoading ? "Saving..." : product ? "Update" : "Create" }
             </Button>
           </div>
         </form>
