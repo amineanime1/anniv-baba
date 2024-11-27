@@ -113,3 +113,4 @@ export async function getRelatedProducts(category: string, currentProductId: str
     throw error;
   }
 }
+

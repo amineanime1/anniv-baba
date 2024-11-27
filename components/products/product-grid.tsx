@@ -11,9 +11,10 @@ interface ProductGridProps {
     priceRange: string;
     availability: string;
   };
+  sortOrder: string;
 }
 
-export function ProductGrid({ filters }: ProductGridProps) {
+export function ProductGrid({ filters, sortOrder }: ProductGridProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -31,6 +32,22 @@ export function ProductGrid({ filters }: ProductGridProps) {
 
     loadProducts();
   }, []);
+
+  const sortProducts = (products: Product[]) => {
+    const sortedProducts = [...products];
+    switch (sortOrder) {
+      case "price-asc":
+        return sortedProducts.sort((a, b) => a.price - b.price);
+      case "price-desc":
+        return sortedProducts.sort((a, b) => b.price - a.price);
+      case "newest":
+        return sortedProducts.sort((a, b) => 
+          new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        );
+      default: // "featured" or default sorting
+        return sortedProducts;
+    }
+  };
 
   const filteredProducts = products.filter((product) => {
     if (filters.category && filters.category !== "all" && product.category !== filters.category) return false;
@@ -50,6 +67,8 @@ export function ProductGrid({ filters }: ProductGridProps) {
     return true;
   });
 
+  const sortedAndFilteredProducts = sortProducts(filteredProducts);
+
   if (isLoading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -60,7 +79,7 @@ export function ProductGrid({ filters }: ProductGridProps) {
     );
   }
 
-  if (filteredProducts.length === 0) {
+  if (sortedAndFilteredProducts.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-lg text-muted-foreground">No products found matching your criteria.</p>
@@ -70,7 +89,7 @@ export function ProductGrid({ filters }: ProductGridProps) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {filteredProducts.map((product) => (
+      {sortedAndFilteredProducts.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>

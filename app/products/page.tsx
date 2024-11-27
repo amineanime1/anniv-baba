@@ -11,6 +11,7 @@ export default function ProductsPage() {
     priceRange: "",
     availability: "",
   });
+  const [sortOrder, setSortOrder] = useState("featured");
 
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
@@ -21,9 +22,9 @@ export default function ProductsPage() {
         </aside>
         <div className="flex-1">
           <div className="mb-6">
-            <ProductSort />
+            <ProductSort sortOrder={sortOrder} onSortChange={setSortOrder} />
           </div>
-          <ProductGrid filters={filters} />
+          <ProductGrid filters={filters} sortOrder={sortOrder} />
         </div>
       </div>
     </div>

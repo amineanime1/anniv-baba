@@ -8,10 +8,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function ProductSort() {
+interface ProductSortProps {
+  sortOrder: string;
+  onSortChange: (value: string) => void;
+}
+
+export function ProductSort({ sortOrder, onSortChange }: ProductSortProps) {
   return (
     <div className="flex justify-end">
-      <Select defaultValue="featured">
+      <Select value={sortOrder} onValueChange={onSortChange}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Sort by" />
         </SelectTrigger>
