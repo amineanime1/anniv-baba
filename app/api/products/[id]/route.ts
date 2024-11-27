@@ -1,6 +1,48 @@
+// pages/products/[id].tsx
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase/config";
+import { GetStaticProps, GetStaticPaths } from 'next';
+import { supabase } from '@/lib/supabase/config';
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  if (!supabase) {
+    console.error('Supabase client is not initialized');
+    return { paths: [], fallback: false };
+  }
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('id');
+
+  if (error) {
+    console.error('Error fetching product IDs:', error);
+    return { paths: [], fallback: false };
+  }
+
+  const paths = products.map((product: { id: string }) => ({
+    params: { id: product.id.toString() },
+  }));
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { id } = context.params!;
+  if (!supabase) {
+    console.error('Supabase client is not initialized');
+    return { notFound: true };
+  }
+  const { data: product, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (error) {
+    console.error('Error fetching product:', error);
+    return { notFound: true };
+  }
+
+  return { props: { product } };
+};
 export async function GET(
   request: Request,
   { params }: { params: { id: string } }
