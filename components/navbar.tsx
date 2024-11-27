@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { CartSheet } from "./cart/cart-sheet";
 import { ThemeToggle } from "./theme-toggle";
+import { useRouter } from "next/navigation";
 import {
   Sheet,
   SheetContent,
@@ -15,15 +16,45 @@ import {
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+  const router = useRouter();
+
+  // Reset click count after 2 seconds of inactivity
+  useEffect(() => {
+    const timer = setTimeout(() => setClickCount(0), 2000);
+    return () => clearTimeout(timer);
+  }, [clickCount]);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    // Handle keyboard shortcut (Ctrl + Shift + A)
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.shiftKey && e.key === "A") {
+        router.push("/admin/login");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [router]);
+
+  // Handle logo triple click
+  const handleLogoClick = () => {
+    setClickCount((prev) => {
+      if (prev === 2) {
+        router.push("/admin");
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
 
   const NavLinks = () => (
     <>
@@ -43,14 +74,21 @@ export function Navbar() {
   );
 
   return (
-    <nav className={cn(
-      "sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
-      isScrolled && "shadow-sm"
-    )}>
+    <nav
+      className={cn(
+        "sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        isScrolled && "shadow-sm"
+      )}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
+          {/* Logo with triple-click logic */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl sm:text-2xl font-playfair font-bold text-primary">
+            <Link
+              href="/"
+              className="text-xl sm:text-2xl font-playfair font-bold text-primary"
+              onClick={handleLogoClick}
+            >
               Grandpa&apos;s Plant Shop
             </Link>
           </div>
