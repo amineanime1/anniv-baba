@@ -1,6 +1,7 @@
 "use server";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+console.log("API_URL:", API_URL);
 
 export async function getDeliveryFees() {
   const res = await fetch(`${API_URL}/api/delivery-fees`, {
