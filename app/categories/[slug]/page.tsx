@@ -31,6 +31,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           priceRange: "all",
           availability: "all"
         }}
+        sortOrder=""
       />
     </div>
   );
