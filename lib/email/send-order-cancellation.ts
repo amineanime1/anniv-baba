@@ -22,6 +22,6 @@ export async function sendOrderCancellationEmail(order: any) {
       });
     }
   } catch (error) {
-    console.error('Failed to send cancellation email:', error);
+    console.error('Failed to send cancellation email:', error); 
   }
 }
