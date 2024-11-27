@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabaseServerClient as supabase } from '@/lib/supabase/server-client';
+import { sendOrderConfirmation } from '@/lib/email/send-order-confirmation';
 
 export async function GET() {
   try {
@@ -86,6 +87,11 @@ export async function POST(request: Request) {
       if (stockError) throw stockError;
     }
 
+   // Send confirmation email if email is provided
+   if (order.customer_email) {
+    await sendOrderConfirmation(order);
+  }
+  
     return NextResponse.json(order);
   } catch (error: any) {
     console.error("Error creating order:", error);

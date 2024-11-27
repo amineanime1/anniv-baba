@@ -13,6 +13,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -24,21 +25,25 @@ import {
 import { useCart } from "@/contexts/cart-context";
 import { WILAYAS } from "@/lib/constants";
 import { createOrder } from "@/lib/actions/orders";
+import { getDeliveryFee } from "@/lib/actions/delivery-fees";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const formSchema = z.object({
   customerName: z.string().min(2, "Name must be at least 2 characters"),
   customerPhone: z.string().min(10, "Please enter a valid phone number"),
-  customerEmail: z.string().email("Please enter a valid email address"),
+  customerEmail: z.string().email("Please enter a valid email address").optional().or(z.literal("")),
   wilaya: z.string().min(1, "Please select your wilaya"),
   address: z.string().min(10, "Please enter your full address"),
   notes: z.string().optional(),
 });
 
 export function CheckoutForm() {
-  const { clearCart, items, total } = useCart();
+  const { clearCart, items, total, deliveryFee, setDeliveryFee } = useCart();
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,7 +56,24 @@ export function CheckoutForm() {
     },
   });
 
+  const handleWilayaChange = async (value: string) => {
+    try {
+      const fee = await getDeliveryFee(value);
+      setDeliveryFee(fee || 0);
+      form.setValue("wilaya", value);
+    } catch (error) {
+      console.error("Failed to fetch delivery fee:", error);
+      toast.error("Failed to fetch delivery fee");
+    }
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!deliveryFee) {
+      toast.error("Please select a delivery location");
+      return;
+    }
+
+    setIsSubmitting(true);
     try {
       const orderData = {
         ...values,
@@ -61,16 +83,27 @@ export function CheckoutForm() {
           price: item.price,
         })),
         totalAmount: total,
-        deliveryFee: 500, // Default delivery fee
+        deliveryFee: deliveryFee,
       };
 
       await createOrder(orderData);
-      toast.success("Order placed successfully!");
+      
+      toast.success(
+        <div className="flex flex-col gap-1">
+          <p className="font-semibold">Order Received Successfully!</p>
+          {values.customerEmail && (
+            <p className="text-sm">A confirmation email will be sent to your inbox.</p>
+          )}
+        </div>
+      );
+
       clearCart();
-      router.push("/"); // Redirect to home or order confirmation page
+      router.push("/");
     } catch (error) {
       console.error("Order creation error:", error);
       toast.error("Failed to place order. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -110,10 +143,13 @@ export function CheckoutForm() {
           name="customerEmail"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Email (Optional)</FormLabel>
               <FormControl>
                 <Input placeholder="john@example.com" {...field} />
               </FormControl>
+              <FormDescription>
+                Provide your email to receive order confirmation and updates
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -125,7 +161,7 @@ export function CheckoutForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Wilaya</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={handleWilayaChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select your wilaya" />
@@ -178,8 +214,8 @@ export function CheckoutForm() {
           )}
         />
 
-        <Button type="submit" className="w-full">
-          Place Order
+        <Button type="submit" className="w-full" disabled={isSubmitting}>
+          {isSubmitting ? "Processing..." : "Place Order"}
         </Button>
       </form>
     </Form>

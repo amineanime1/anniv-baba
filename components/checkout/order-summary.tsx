@@ -6,9 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
 export function OrderSummary() {
-  const { items, total } = useCart();
-  const deliveryFee = 500; // Example delivery fee
-  const totalWithDelivery = total + deliveryFee;
+  const { items, subtotal, deliveryFee, total } = useCart();
 
   return (
     <Card>
@@ -42,7 +40,7 @@ export function OrderSummary() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span>Subtotal</span>
-              <span>{total} DZD</span>
+              <span>{subtotal} DZD</span>
             </div>
             <div className="flex justify-between text-sm">
               <span>Delivery Fee</span>
@@ -51,7 +49,7 @@ export function OrderSummary() {
             <Separator className="my-2" />
             <div className="flex justify-between font-medium">
               <span>Total</span>
-              <span>{totalWithDelivery} DZD</span>
+              <span>{total} DZD</span>
             </div>
           </div>
         </div>

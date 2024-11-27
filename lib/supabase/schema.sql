@@ -83,3 +83,32 @@ BEGIN
     WHERE id = p_product_id;
 END;
 $$ LANGUAGE plpgsql;
+
+-- Function to update product stock (refund/increase)
+CREATE OR REPLACE FUNCTION update_product_stock_refund(
+  p_product_id bigint,
+  p_quantity integer
+)
+RETURNS void AS $$
+BEGIN
+  UPDATE products
+  SET stock = stock + p_quantity
+  WHERE id = p_product_id;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to check stock before update
+CREATE OR REPLACE FUNCTION check_stock_before_update()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.stock < 0 THEN
+    RAISE EXCEPTION 'Stock cannot be negative';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER products_stock_check
+  BEFORE UPDATE ON products
+  FOR EACH ROW
+  EXECUTE FUNCTION check_stock_before_update();

@@ -42,21 +42,21 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               <>
                 <button
                   onClick={() => setCurrentImage(i => (i > 0 ? i - 1 : product.images.length - 1))}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white"
-                >
+className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 p-2 rounded-full hover:bg-background dark:bg-background/20 dark:hover:bg-background/40"
+             >
                   <ChevronLeft className="h-6 w-6" />
                 </button>
                 <button
                   onClick={() => setCurrentImage(i => (i < product.images.length - 1 ? i + 1 : 0))}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white"
-                >
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 p-2 rounded-full hover:bg-background dark:bg-background/20 dark:hover:bg-background/40"
+                  >
                   <ChevronRight className="h-6 w-6" />
                 </button>
               </>
             )}
           </div>
           {product.images.length > 1 && (
-            <div className="flex gap-4 overflow-x-auto pb-2">
+            <div className="flex gap-4 overflow-x-auto pb-2 p-4">
               {product.images.map((image, index) => (
                 <button
                   key={index}

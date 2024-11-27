@@ -7,6 +7,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [deliveryFee, setDeliveryFee] = useState(0);
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -52,12 +53,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setItems([]);
+    setDeliveryFee(0);
   };
 
-  const total = items.reduce(
+  const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+
+  const total = subtotal + deliveryFee;
 
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -70,6 +74,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updateQuantity,
         clearCart,
         total,
+        subtotal,
+        deliveryFee,
+        setDeliveryFee,
         itemCount,
       }}
     >

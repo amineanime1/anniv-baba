@@ -11,9 +11,14 @@ export async function getDeliveryFees() {
 }
 
 export async function getDeliveryFee(wilaya: string) {
-  const fees = await getDeliveryFees();
-  const fee = fees.find((f: any) => f.wilaya === wilaya);
-  return fee ? fee.fee : null;
+  try {
+    const fees = await getDeliveryFees();
+    const fee = fees.find((f: any) => f.wilaya === wilaya);
+    return fee ? fee.fee : null;
+  } catch (error) {
+    console.error("Error fetching delivery fee:", error);
+    throw new Error("Failed to fetch delivery fee");
+  }
 }
 
 export async function createDeliveryFee(data: any) {

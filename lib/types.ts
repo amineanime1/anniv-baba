@@ -20,5 +20,8 @@ export interface CartContextType {
   updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
   total: number;
+  subtotal: number;
+  deliveryFee: number;
+  setDeliveryFee: (fee: number) => void;
   itemCount: number;
 }

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase/config";
+import { supabaseServerClient as supabase } from "@/lib/supabase/server-client";
 
 export async function GET(
   request: Request,
@@ -7,11 +7,9 @@ export async function GET(
 ) {
   try {
     if (!supabase) {
-      return NextResponse.json(
-        { error: "Supabase client is not initialized" },
-        { status: 500 }
-      );
+      throw new Error("Supabase client is not initialized");
     }
+
     const { data, error } = await supabase
       .from("products")
       .select("*")
@@ -21,9 +19,10 @@ export async function GET(
     if (error) throw error;
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch (error: any) {
+    console.error("Error fetching product:", error);
     return NextResponse.json(
-      { error: "Failed to fetch product" },
+      { error: error.message || "Failed to fetch product" },
       { status: 500 }
     );
   }
@@ -35,11 +34,9 @@ export async function PATCH(
 ) {
   try {
     if (!supabase) {
-      return NextResponse.json(
-        { error: "Supabase client is not initialized" },
-        { status: 500 }
-      );
+      throw new Error("Supabase client is not initialized");
     }
+
     const body = await request.json();
     const { data, error } = await supabase
       .from("products")
@@ -59,9 +56,10 @@ export async function PATCH(
     if (error) throw error;
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch (error: any) {
+    console.error("Error updating product:", error);
     return NextResponse.json(
-      { error: "Failed to update product" },
+      { error: error.message || "Failed to update product" },
       { status: 500 }
     );
   }
@@ -73,10 +71,7 @@ export async function DELETE(
 ) {
   try {
     if (!supabase) {
-      return NextResponse.json(
-        { error: "Supabase client is not initialized" },
-        { status: 500 }
-      );
+      throw new Error("Supabase client is not initialized");
     }
 
     const { error } = await supabase
@@ -87,9 +82,10 @@ export async function DELETE(
     if (error) throw error;
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
+    console.error("Error deleting product:", error);
     return NextResponse.json(
-      { error: "Failed to delete product" },
+      { error: error.message || "Failed to delete product" },
       { status: 500 }
     );
   }
