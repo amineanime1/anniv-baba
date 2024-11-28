@@ -46,7 +46,7 @@ export function Navbar() {
   }, [router]);
 
   // Handle logo triple click
-  const handleLogoClick = () => {
+  const handleLogoClick = (e: React.MouseEvent | React.TouchEvent) => {
     setClickCount((prev) => {
       if (prev === 2) {
         router.push("/admin/login");
@@ -88,6 +88,7 @@ export function Navbar() {
               href="/"
               className="text-xl sm:text-2xl font-playfair font-bold text-primary"
               onClick={handleLogoClick}
+              onTouchStart={handleLogoClick}
             >
               Grandpa&apos;s Plant Shop
             </Link>
