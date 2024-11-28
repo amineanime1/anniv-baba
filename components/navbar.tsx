@@ -49,7 +49,7 @@ export function Navbar() {
   const handleLogoClick = () => {
     setClickCount((prev) => {
       if (prev === 2) {
-        router.push("/admin");
+        router.push("/admin/login");
         return 0;
       }
       return prev + 1;

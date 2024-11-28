@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseServerClient as supabase } from "@/lib/supabase/server-client"; // Ensure correct import
+import { supabaseServerClient as supabase } from "@/lib/supabase/server-client";
 
 export async function GET(
   request: Request,
@@ -22,7 +22,13 @@ export async function GET(
 
     const { data, error } = await supabase
       .from("orders")
-      .select("*")
+      .select(`
+        *,
+        order_items (
+          *,
+          products (*)
+        )
+      `)
       .eq("id", params.id)
       .single();
 
@@ -65,6 +71,31 @@ export async function PATCH(
         { error: "Status is required" },
         { status: 400 }
       );
+    }
+
+    // If changing from cancelled status, restore stock
+    if (status !== "cancelled") {
+      const { data: currentOrder } = await supabase
+        .from("orders")
+        .select("status")
+        .eq("id", params.id)
+        .single();
+
+      if (currentOrder?.status === "cancelled") {
+        const { data: orderItems } = await supabase
+          .from("order_items")
+          .select("product_id, quantity")
+          .eq("order_id", params.id);
+
+        if (orderItems) {
+          for (const item of orderItems) {
+            await supabase.rpc("update_product_stock", {
+              p_product_id: item.product_id,
+              p_quantity: item.quantity
+            });
+          }
+        }
+      }
     }
 
     const { data, error } = await supabase

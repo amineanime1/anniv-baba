@@ -32,3 +32,15 @@ export async function createDeliveryFee(data: any) {
   if (!res.ok) throw new Error("Failed to create delivery fee");
   return res.json();
 }
+
+export async function updateDeliveryFee(wilaya: string, fee: number) {
+  const res = await fetch(`${API_URL}/api/delivery-fees/${wilaya}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ fee }),
+  });
+  if (!res.ok) throw new Error("Failed to update delivery fee");
+  return res.json();
+}

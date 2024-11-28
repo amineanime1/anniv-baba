@@ -11,6 +11,8 @@ import {
   Settings,
   LogOut,
   Menu,
+  ArrowRight,
+  ArrowLeft,
   ChevronLeft,
   ChevronRight
 } from "lucide-react";
@@ -60,7 +62,7 @@ export function AdminSidebar() {
           <>
             <h1 className="text-lg font-semibold">Admin Panel</h1>
             <div className="flex items-center gap-2">
-              <ThemeToggle />
+              {/* <ThemeToggle /> */}
               <Button
                 variant="ghost"
                 size="sm"
@@ -123,13 +125,26 @@ export function AdminSidebar() {
     return (
       <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="lg:hidden fixed left-4 top-4 z-50"
-          >
-            <Menu className="h-6 w-6" />
-          </Button>
+        <Button
+    variant="ghost"
+    size="icon"
+    aria-label="Toggle Sidebar"
+    onClick={() => setIsOpen(!isOpen)}
+    className={cn(
+      "fixed top-1/2 -left-1 transform -translate-y-1/2",
+      "rounded-l-none rounded-r-full",
+      "h-20 w-6 p-0 flex items-center justify-center",
+      "bg-primary text-primary-foreground",
+      "shadow-md"
+    )}
+  >
+    <ChevronLeft
+      className={cn(
+        "h-4 w-4 transition-transform duration-200",
+        !isOpen && "rotate-180"
+      )}
+    />
+  </Button>
         </SheetTrigger>
         <SheetContent side="left" className="p-0 w-64">
           <SidebarContent />
