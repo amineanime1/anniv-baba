@@ -9,16 +9,16 @@ export default function AccessDenied() {
         <div className="flex justify-center mb-6">
           <ShieldAlert className="h-12 w-12 text-destructive" />
         </div>
-        <h1 className="text-2xl font-bold mb-4">Access Denied</h1>
+        <h1 className="text-2xl font-bold mb-4">Accès Refusé</h1>
         <p className="text-muted-foreground mb-6">
-          You don&apos;t have permission to access the admin area. Please contact the system administrator.
+          Vous n'avez pas la permission d'accéder à la zone administrateur. Veuillez contacter l'administrateur du système.
         </p>
         <div className="space-y-4">
           <Link href="/">
-            <Button className="w-full">Return to Homepage</Button>
+            <Button className="w-full">Retour à la page d'accueil</Button>
           </Link>
           <Link href="/admin/login">
-            <Button variant="outline" className="w-full">Try Different Account</Button>
+            <Button variant="outline" className="w-full">Essayer un autre compte</Button>
           </Link>
         </div>
       </div>

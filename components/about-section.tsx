@@ -47,7 +47,7 @@ export function AboutSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Bienvenue chez Grandpa's Plant Shop, où notre passion pour les plantes rencontre des décennies d'expertise en jardinage. 
+                Bienvenue chez Les Plantes de Grand-père, où notre passion pour les plantes rencontre des décennies d'expertise en jardinage. 
                 Ce qui a commencé comme un petit jardin familial est devenu la source de confiance de l'Algérie pour des plantes de qualité 
                 et des conseils d'experts.
               </motion.p>

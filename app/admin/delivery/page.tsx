@@ -23,7 +23,7 @@ export default function DeliveryPage() {
       const data = await getDeliveryFees();
       setFees(data);
     } catch (error) {
-      toast.error("Failed to load delivery fees");
+      toast.error("Échec du chargement des frais de livraison");
     } finally {
       setIsLoading(false);
     }
@@ -39,17 +39,17 @@ export default function DeliveryPage() {
           fee: parseInt(editValue),
         });
       }
-      toast.success("Delivery fee updated");
+      toast.success("Frais de livraison mis à jour");
       loadDeliveryFees();
       setEditingId(null);
     } catch (error) {
-      toast.error("Failed to update delivery fee");
+      toast.error("Échec de la mise à jour des frais de livraison");
     }
   }
 
   const columns = [
     { key: "wilaya", label: "Wilaya" },
-    { key: "fee", label: "Delivery Fee" },
+    { key: "fee", label: "Frais de livraison" },
     {
       key: "actions",
       label: "Actions",
@@ -80,14 +80,14 @@ export default function DeliveryPage() {
             size="sm"
             onClick={() => handleSave(wilaya.name)}
           >
-            Save
+            Enregistrer
           </Button>
           <Button
             variant="outline"
             size="sm"
             onClick={() => setEditingId(null)}
           >
-            Cancel
+            Annuler
           </Button>
         </div>
       ) : (
@@ -99,7 +99,7 @@ export default function DeliveryPage() {
             setEditValue(fees.find(f => f.wilaya === wilaya.name)?.fee?.toString() || "0");
           }}
         >
-          Edit
+          Modifier
         </Button>
       ),
     };
@@ -111,7 +111,7 @@ export default function DeliveryPage() {
         <div>
           <h3 className="font-medium">{item.wilaya}</h3>
           <p className="text-sm text-muted-foreground">
-            {typeof item.fee === "string" ? item.fee : `${item.fee} DZD`}
+            {item.fee}
           </p>
         </div>
         {item.actions}
@@ -122,9 +122,9 @@ export default function DeliveryPage() {
   if (isLoading) {
     return (
       <div className="space-y-6">
-        <h1 className="text-3xl font-bold">Delivery Fees</h1>
+        <h1 className="text-3xl font-bold">Frais de livraison</h1>
         <div className="rounded-md border">
-          <div className="p-8 text-center">Loading...</div>
+          <div className="p-8 text-center">Chargement...</div>
         </div>
       </div>
     );
@@ -132,7 +132,7 @@ export default function DeliveryPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Delivery Fees</h1>
+      <h1 className="text-3xl font-bold">Frais de livraison</h1>
       <DataTable
         columns={columns}
         data={tableData}

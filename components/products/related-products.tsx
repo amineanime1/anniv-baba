@@ -20,7 +20,7 @@ export function RelatedProducts({ category, currentProductId }: RelatedProductsP
         const data = await getRelatedProducts(category, currentProductId);
         setProducts(data);
       } catch (error) {
-        console.error("Failed to load related products:", error);
+        console.error("Échec du chargement des produits associés:", error);
       } finally {
         setIsLoading(false);
       }
@@ -35,7 +35,7 @@ export function RelatedProducts({ category, currentProductId }: RelatedProductsP
 
   return (
     <div className="mt-16">
-      <h2 className="text-2xl font-playfair font-bold mb-8">Related Products</h2>
+      <h2 className="text-2xl font-playfair font-bold mb-8">Produits Associés</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

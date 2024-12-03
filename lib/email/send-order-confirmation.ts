@@ -26,7 +26,7 @@ export async function sendOrderConfirmation(order: any) {
           
           <p>Nous vous informerons lorsque votre commande aura été expédiée.</p>
           
-          <p>Cordialement,<br>L'équipe de Grandpa's Plant Shop</p>
+          <p>Cordialement,<br>L'équipe de Les Plantes de Grand-père</p>
         `,
       });
     }

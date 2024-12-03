@@ -32,7 +32,7 @@ const CATEGORIES = [
 export function Categories() {
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-playfair font-bold text-center mb-12">Shop by Category</h2>
+      <h2 className="text-3xl font-playfair font-bold text-center mb-12">Acheter par Catégorie</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {CATEGORIES.map((category) => (
           <Link key={category.id} href={category.href}>

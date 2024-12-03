@@ -59,13 +59,13 @@ export function Navbar() {
   const NavLinks = () => (
     <>
       <Link href="/products" className="text-foreground/80 hover:text-foreground">
-        Products
+        Produits
       </Link>
       <Link href="/categories" className="text-foreground/80 hover:text-foreground">
-        Categories
+        Catégories
       </Link>
       <Link href="/about" className="text-foreground/80 hover:text-foreground">
-        About
+        À Propos
       </Link>
       <Link href="/contact" className="text-foreground/80 hover:text-foreground">
         Contact
@@ -90,7 +90,7 @@ export function Navbar() {
               onClick={handleLogoClick}
               onTouchStart={handleLogoClick}
             >
-              Grandpa&apos;s Plant Shop
+              Les Plantes de Grand-père
             </Link>
           </div>
 

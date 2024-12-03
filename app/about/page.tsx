@@ -4,7 +4,7 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-playfair font-bold text-center mb-12">About Grandpa&apos;s Plant Shop</h1>
+        <h1 className="text-3xl font-playfair font-bold text-center mb-12">À propos de la boutique de Les Plantes de Grand-père</h1>
         
         <div className="relative h-[400px] mb-8 rounded-lg overflow-hidden">
           <Image
@@ -17,21 +17,21 @@ export default function AboutPage() {
 
         <div className="prose prose-lg max-w-none">
           <p className="text-lg leading-relaxed mb-6">
-            Welcome to Grandpa&apos;s Plant Shop, where our passion for plants meets decades of gardening expertise. 
-            What started as a small family garden has blossomed into Algeria&apos;s trusted source for quality plants 
-            and expert advice.
+            Bienvenue à la boutique de plantes de grand-père, où notre passion pour les plantes rencontre des décennies d'expertise en jardinage.
+            Ce qui a commencé comme un petit jardin familial est devenu la source de confiance de l'Algérie pour des plantes de qualité
+            et des conseils d'experts.
           </p>
 
           <p className="text-lg leading-relaxed mb-6">
-            Our mission is simple: to share the joy of gardening and help create beautiful, green spaces in homes 
-            across Algeria. Every plant in our collection is carefully selected and nurtured to ensure it thrives 
-            in its new home.
+            Notre mission est simple : partager la joie du jardinage et aider à créer de beaux espaces verts dans les maisons
+            à travers l'Algérie. Chaque plante de notre collection est soigneusement sélectionnée et entretenue pour s'assurer qu'elle prospère
+            dans sa nouvelle maison.
           </p>
 
           <p className="text-lg leading-relaxed">
-            With years of experience in plant care and cultivation, we&apos;re not just selling plants – we&apos;re 
-            sharing knowledge and passion that spans generations. Whether you&apos;re a seasoned gardener or just 
-            starting your plant journey, we&apos;re here to help your green family grow.
+            Avec des années d'expérience dans le soin et la culture des plantes, nous ne vendons pas seulement des plantes – nous partageons
+            des connaissances et une passion qui traversent les générations. Que vous soyez un jardinier chevronné ou que vous commenciez
+            votre aventure avec les plantes, nous sommes là pour aider votre famille verte à grandir.
           </p>
         </div>
       </div>

@@ -7,22 +7,22 @@ import { Star } from "lucide-react";
 const testimonials = [
   {
     name: "Sarah Amrani",
-    role: "Plant Enthusiast",
+    role: "Passionnée de plantes",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-    content: "The quality of plants I received exceeded my expectations. The customer service team was incredibly helpful with plant care advice.",
+    content: "La qualité des plantes que j'ai reçues a dépassé mes attentes. L'équipe du service client a été incroyablement utile pour me donner des conseils sur l'entretien des plantes."
   },
   {
     name: "Karim Benali",
-    role: "Interior Designer",
+    role: "Designer d'intérieur",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-    content: "I regularly source plants for my design projects from Grandpa's Plant Shop. Their selection and quality are unmatched.",
+    content: "Je m'approvisionne régulièrement en plantes pour mes projets de design chez La Boutique de Plantes de Grand-père. Leur sélection et leur qualité sont inégalées."
   },
   {
     name: "Amina Khelifi",
-    role: "Home Gardener",
+    role: "Jardinière à domicile",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-    content: "The plants arrived in perfect condition, and the care instructions were very helpful. I'll definitely be ordering again!",
-  },
+    content: "Les plantes sont arrivées en parfait état, et les instructions d'entretien étaient très utiles. Je commanderai à nouveau sans hésiter !"
+  }  
 ];
 
 export function TestimonialsSection() {

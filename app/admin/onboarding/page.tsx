@@ -16,46 +16,46 @@ import { Loader2 } from "lucide-react";
 
 const steps = [
   {
-    title: "Welcome to the Admin Panel",
-    description: "Let's get you set up with everything you need to manage your plant shop.",
+    title: "Bienvenue dans le panneau d'administration",
+    description: "Commençons par vous fournir tout ce dont vous avez besoin pour gérer votre boutique de plantes.",
     content: (
       <div className="space-y-4">
-        <p>As an admin, you'll be able to:</p>
+        <p>En tant qu'administrateur, vous pourrez :</p>
         <ul className="list-disc list-inside space-y-2">
-          <li>Manage products and inventory</li>
-          <li>Process and track orders</li>
-          <li>Set delivery fees by region</li>
-          <li>View analytics and reports</li>
+          <li>Gérer les produits et les stocks</li>
+          <li>Traiter et suivre les commandes</li>
+          <li>Définir les frais de livraison par région</li>
+          <li>Consulter les analyses et les rapports</li>
         </ul>
       </div>
     ),
   },
   {
-    title: "Products Management",
-    description: "Learn how to manage your product catalog.",
+    title: "Gestion des produits",
+    description: "Apprenez à gérer votre catalogue de produits.",
     content: (
       <div className="space-y-4">
-        <p>Quick tips for product management:</p>
+        <p>Conseils rapides pour la gestion des produits :</p>
         <ul className="list-disc list-inside space-y-2">
-          <li>Use high-quality images for products</li>
-          <li>Keep stock levels updated</li>
-          <li>Set competitive prices</li>
-          <li>Write detailed descriptions</li>
+          <li>Utilisez des images de haute qualité pour les produits</li>
+          <li>Maintenez les niveaux de stock à jour</li>
+          <li>Fixez des prix compétitifs</li>
+          <li>Rédigez des descriptions détaillées</li>
         </ul>
       </div>
     ),
   },
   {
-    title: "Order Processing",
-    description: "Understanding the order fulfillment process.",
+    title: "Traitement des commandes",
+    description: "Comprendre le processus de traitement des commandes.",
     content: (
       <div className="space-y-4">
-        <p>Order processing steps:</p>
+        <p>Étapes de traitement des commandes :</p>
         <ul className="list-disc list-inside space-y-2">
-          <li>Review new orders daily</li>
-          <li>Update order status promptly</li>
-          <li>Coordinate with delivery partners</li>
-          <li>Handle customer inquiries</li>
+          <li>Examinez les nouvelles commandes quotidiennement</li>
+          <li>Mettez à jour le statut des commandes rapidement</li>
+          <li>Coordonnez avec les partenaires de livraison</li>
+          <li>Gérez les demandes des clients</li>
         </ul>
       </div>
     ),

@@ -24,7 +24,7 @@ export default function LoginPage() {
       document.cookie = "isAdmin=true; path=/admin; httpOnly: true; secure: true;  SameSite=Strict";
       router.push('/admin');
     } else {
-      setError('Invalid credentials');
+      setError('Identifiants invalides');
     }
   };
 
@@ -32,15 +32,15 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Admin Access</h1>
+          <h1 className="text-2xl font-bold">Accès Administrateur</h1>
           <p className="mt-2 text-muted-foreground">
-            Sign in to access the admin dashboard
+            Connectez-vous pour accéder au tableau de bord administrateur
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 bg-card p-8 rounded-lg shadow-lg">
           <div className="space-y-2">
-            <label className="text-sm font-medium">Username</label>
+            <label className="text-sm font-medium">Nom d'utilisateur</label>
             <Input
               type="text"
               value={username}
@@ -50,7 +50,7 @@ export default function LoginPage() {
           </div>
           
           <div className="space-y-2">
-            <label className="text-sm font-medium">Password</label>
+            <label className="text-sm font-medium">Mot de passe</label>
             <Input
               type="password"
               value={password}
@@ -66,12 +66,12 @@ export default function LoginPage() {
           )}
 
           <Button type="submit" className="w-full">
-            Sign In
+            Se connecter
           </Button>
         </form>
 
         <p className="mt-4 text-center text-md text-muted-foreground">
-          If the login doesn't work, please reload the page and try again.
+          Si la connexion ne fonctionne pas, veuillez recharger la page et réessayer.
         </p>
       </div>
     </div>

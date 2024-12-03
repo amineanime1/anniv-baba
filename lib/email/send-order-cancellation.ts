@@ -17,7 +17,7 @@ export async function sendOrderCancellationEmail(order: any) {
           <p>Votre commande #${order.id} a été annulée comme demandé.</p>
           <p>Le montant total de ${order.total_amount} DZD sera remboursé selon votre méthode de paiement d'origine.</p>
           <p>Si vous avez des questions, n'hésitez pas à nous contacter.</p>
-          <p>Cordialement,<br>L'équipe de Grandpa's Plant Shop</p>
+          <p>Cordialement,<br>L'équipe de Les Plantes de Grand-père</p>
         `,
       });
     }

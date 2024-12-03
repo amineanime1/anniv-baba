@@ -6,23 +6,23 @@ import { Leaf, Truck, Shield, ThumbsUp } from "lucide-react";
 const features = [
   {
     icon: Leaf,
-    title: "Premium Quality Plants",
-    description: "Hand-picked, healthy plants nurtured by expert gardeners",
+    title: "Plantes de Qualité Supérieure",
+    description: "Plantes saines et soigneusement sélectionnées par des jardiniers experts",
   },
   {
     icon: Truck,
-    title: "Nationwide Delivery",
-    description: "Safe delivery to all 58 wilayas across Algeria",
+    title: "Livraison Nationale",
+    description: "Livraison sécurisée dans les 58 wilayas d'Algérie",
   },
   {
     icon: Shield,
-    title: "Plant Health Guarantee",
-    description: "30-day guarantee on all plants with expert care guidance",
+    title: "Garantie de Santé des Plantes",
+    description: "Garantie de 30 jours sur toutes les plantes avec des conseils de soins experts",
   },
   {
     icon: ThumbsUp,
-    title: "Expert Support",
-    description: "Dedicated plant care support from our experienced team",
+    title: "Support Expert",
+    description: "Support dédié aux soins des plantes par notre équipe expérimentée",
   },
 ];
 
@@ -37,9 +37,9 @@ export function FeaturesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-playfair font-bold mb-4">Why Choose Us?</h2>
+          <h2 className="text-3xl font-playfair font-bold mb-4">Pourquoi Nous Choisir ?</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We're committed to bringing nature into your home with the highest quality plants and exceptional service.
+            Nous nous engageons à apporter la nature dans votre maison avec des plantes de la plus haute qualité et un service exceptionnel.
           </p>
         </motion.div>
 

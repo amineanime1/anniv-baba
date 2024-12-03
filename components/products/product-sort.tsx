@@ -18,13 +18,13 @@ export function ProductSort({ sortOrder, onSortChange }: ProductSortProps) {
     <div className="flex justify-end">
       <Select value={sortOrder} onValueChange={onSortChange}>
         <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Sort by" />
+          <SelectValue placeholder="Trier par" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="featured">Featured</SelectItem>
-          <SelectItem value="price-asc">Price: Low to High</SelectItem>
-          <SelectItem value="price-desc">Price: High to Low</SelectItem>
-          <SelectItem value="newest">Newest First</SelectItem>
+          <SelectItem value="featured">En Vedette</SelectItem>
+          <SelectItem value="price-asc">Prix: Croissant</SelectItem>
+          <SelectItem value="price-desc">Prix: Décroissant</SelectItem>
+          <SelectItem value="newest">Les Plus Récents</SelectItem>
         </SelectContent>
       </Select>
     </div>
