@@ -12,7 +12,7 @@ export function DashboardStats() {
     totalOrders: 0,
     totalRevenue: 0,
     totalProducts: 0,
-    pendingDeliveries: 0,
+    en_attenteDeliveries: 0,
   });
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,8 +24,8 @@ export function DashboardStats() {
           getProducts(),
         ]);
 
-        const pendingDeliveries = orders.filter(
-          (order: any) => order.status === "pending"
+        const en_attenteDeliveries = orders.filter(
+          (order: any) => order.status === "en_attente"
         ).length;
 
         const revenue = orders.reduce(
@@ -37,7 +37,7 @@ export function DashboardStats() {
           totalOrders: orders.length,
           totalRevenue: revenue,
           totalProducts: products.length,
-          pendingDeliveries,
+          en_attenteDeliveries,
         });
       } catch (error) {
         console.error("Failed to load stats:", error);
@@ -86,9 +86,9 @@ export function DashboardStats() {
     },
     {
       title: "Livraison en attente",
-      value: dashboardStats.pendingDeliveries,
+      value: dashboardStats.en_attenteDeliveries,
       icon: Truck,
-      href: "/admin/orders?status=pending",
+      href: "/admin/orders?status=en_attente",
       color: "text-orange-600",
     },
   ];

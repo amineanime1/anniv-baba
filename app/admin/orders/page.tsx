@@ -18,7 +18,7 @@ import {
 import { OrderDetailsDialog } from "@/components/admin/order-details-dialog";
 import { OrderStatusSelect } from "@/components/admin/order-status-select";
 
-const ORDER_STATUS = ["pending", "processing", "shipped", "delivered", "cancelled"];
+const ORDER_STATUS = ["en_attente", "en_cours", "envoyé", "livré", "annulé"];
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
@@ -87,11 +87,11 @@ export default function OrdersPage() {
     total: `${order.total_amount} DZD`,
     status: (
       <Badge variant={
-        order.status === "delivered" ? "delivered" :
-        order.status === "cancelled" ? "cancelled" :
-        order.status === "pending" ? "pending" :
-        order.status === "processing" ? "processing" :
-        order.status === "shipped" ? "shipped" :
+        order.status === "livré" ? "livré" :
+        order.status === "annulé" ? "annulé" :
+        order.status === "en_attente" ? "en_attente" :
+        order.status === "en_cours" ? "en_cours" :
+        order.status === "envoyé" ? "envoyé" :
         "outline"
       }>
         {order.status}

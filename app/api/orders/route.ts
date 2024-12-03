@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         notes: body.notes,
         total_amount: body.totalAmount,
         delivery_fee: body.deliveryFee,
-        status: 'pending'
+        status: 'en_attente'
       })
       .select()
       .single();

@@ -32,7 +32,7 @@ export function OrderStatusSelect({ orderId, currentStatus, onStatusChange }: Or
   const [isUpdating, setIsUpdating] = useState(false);
 
   const handleStatusChange = async (newStatus: string) => {
-    if (newStatus === "cancelled") {
+    if (newStatus === "annulé") {
       setShowCancelDialog(true);
       return;
     }
@@ -70,17 +70,17 @@ export function OrderStatusSelect({ orderId, currentStatus, onStatusChange }: Or
       <Select
         value={currentStatus}
         onValueChange={handleStatusChange}
-        disabled={isUpdating || currentStatus === "cancelled"}
+        disabled={isUpdating || currentStatus === "annulé"}
       >
         <SelectTrigger className="w-[140px]">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="pending">Pending</SelectItem>
-          <SelectItem value="processing">Processing</SelectItem>
-          <SelectItem value="shipped">Shipped</SelectItem>
-          <SelectItem value="delivered">Delivered</SelectItem>
-          <SelectItem value="cancelled">Cancelled</SelectItem>
+          <SelectItem value="en_attente">En attente</SelectItem>
+          <SelectItem value="en_cours">En cours</SelectItem>
+          <SelectItem value="envoyé">Envoyé</SelectItem>
+          <SelectItem value="livré">Livré</SelectItem>
+          <SelectItem value="annulé">Annulé</SelectItem>
         </SelectContent>
       </Select>
 

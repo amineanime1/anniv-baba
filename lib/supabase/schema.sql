@@ -25,7 +25,7 @@ create table public.orders (
   wilaya text not null,
   address text not null,
   notes text,
-  status text not null default 'pending',
+  status text not null default 'en_attente',
   total_amount integer not null,
   delivery_fee integer not null,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null,

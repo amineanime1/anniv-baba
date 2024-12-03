@@ -15,15 +15,15 @@ const badgeVariants = cva(
         destructive:
           'border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80',
         outline: 'text-foreground',
-        delivered:
+        livré:
           'border-transparent bg-green-500 text-white hover:bg-green-600',
-        cancelled:
+        annulé:
           'border-transparent bg-red-500 text-white hover:bg-red-600',
-        pending:
+        en_attente:
           'border-transparent bg-yellow-500 text-white hover:bg-yellow-600',
-        processing:
+        en_cours:
           'border-transparent bg-blue-500 text-white hover:bg-blue-600',
-        shipped:
+        envoyé:
           'border-transparent bg-purple-500 text-white hover:bg-purple-600',
       },
     },

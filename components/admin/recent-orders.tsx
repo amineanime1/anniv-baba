@@ -86,11 +86,11 @@ export function RecentOrders() {
                 <div className="text-right">
                   <p className="font-medium">{order.total_amount} DZD</p>
                   <Badge variant={
-                      order.status === "delivered" ? "delivered" :
-                      order.status === "cancelled" ? "cancelled" :
-                      order.status === "pending" ? "pending" :
-                      order.status === "processing" ? "processing" :
-                      order.status === "shipped" ? "shipped" :
+                      order.status === "livré" ? "livré" :
+                      order.status === "annulé" ? "annulé" :
+                      order.status === "en_attente" ? "en_attente" :
+                      order.status === "en_cours" ? "en_cours" :
+                      order.status === "envoyé" ? "envoyé" :
                       "outline"
                     }>
                       {order.status}

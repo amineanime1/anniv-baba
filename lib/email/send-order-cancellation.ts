@@ -10,7 +10,7 @@ export async function sendOrderCancellationEmail(order: any) {
       await resend.emails.send({
         from: 'Grandpa\'s Plant Shop <orders@grandpasplants.dz>',
         to: order.customer_email,
-        subject: `Order #${order.id} Cancelled`,
+        subject: `Order #${order.id} annulé`,
         html: `
           <h1>Confirmation d'annulation de commande</h1>
           <p>Cher ${order.customer_name},</p>

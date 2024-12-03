@@ -48,13 +48,13 @@ export function HeroSection() {
               transition={{ duration: 0.6 }}
             >
               <h1 className="text-5xl font-bold tracking-tight text-foreground font-playfair lg:text-6xl">
-                Proper care
+                Soin approprié
                 <span className="block text-[#4CAF50] dark:text-[#6ECF73] mt-2">
-                  of Plants
+                  des Plantes
                 </span>
               </h1>
               <p className="mt-6 text-lg text-muted-foreground max-w-md">
-                Caring for indoor plants is a pleasant activity that can turn into a real hobby.
+                Prendre soin des plantes d'intérieur est une activité agréable qui peut devenir un véritable passe-temps.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href="/products">
@@ -62,7 +62,7 @@ export function HeroSection() {
                     size="lg"
                     className="rounded-full px-8"
                   >
-                    Explore More
+                    Explorer Plus
                   </Button>
                 </Link>
               </div>
@@ -92,8 +92,8 @@ export function HeroSection() {
                   </div>
                   
                   <div>
-                    <p className="text-sm text-muted-foreground">Useful video</p>
-                    <p className="text-sm font-medium text-foreground">tips and tricks for plant care</p>
+                    <p className="text-sm text-muted-foreground">Vidéo utile</p>
+                    <p className="text-sm font-medium text-foreground">conseils et astuces pour le soin des plantes</p>
                   </div>
                 </div>
 
@@ -118,8 +118,8 @@ export function HeroSection() {
                     ))}
                   </div>
                   <div className="text-sm">
-                    <span className="font-semibold text-foreground">42,567</span>
-                    <span className="text-muted-foreground ml-1">plant enthusiasts online</span>
+                    <span className="font-semibold text-foreground">42,568</span>
+                    <span className="text-muted-foreground ml-1">amateurs de plantes en ligne</span>
                   </div>
                 </motion.div>
               </motion.div>

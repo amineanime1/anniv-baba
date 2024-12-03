@@ -73,15 +73,15 @@ export async function PATCH(
       );
     }
 
-    // If changing from cancelled status, restore stock
-    if (status !== "cancelled") {
+    // If changing from annulé status, restore stock
+    if (status !== "annulé") {
       const { data: currentOrder } = await supabase
         .from("orders")
         .select("status")
         .eq("id", params.id)
         .single();
 
-      if (currentOrder?.status === "cancelled") {
+      if (currentOrder?.status === "annulé") {
         const { data: orderItems } = await supabase
           .from("order_items")
           .select("product_id, quantity")
