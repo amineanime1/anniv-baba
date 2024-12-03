@@ -40,10 +40,10 @@ export function OrderStatusSelect({ orderId, currentStatus, onStatusChange }: Or
     try {
       setIsUpdating(true);
       await updateOrderStatus(orderId, newStatus);
-      toast.success("Order status updated successfully");
+      toast.success("Statut de la commande mis à jour avec succès");
       onStatusChange();
     } catch (error) {
-      toast.error("Failed to update order status");
+      toast.error("Échec de la mise à jour du statut de la commande");
     } finally {
       setIsUpdating(false);
     }
@@ -53,12 +53,12 @@ export function OrderStatusSelect({ orderId, currentStatus, onStatusChange }: Or
     try {
       setIsUpdating(true);
       await cancelOrder(orderId);
-      toast.success("Order cancelled successfully", {
-        description: "The stock has been returned to inventory."
+      toast.success("Commande annulée avec succès", {
+        description: "Le stock a été retourné à l'inventaire."
       });
       onStatusChange();
     } catch (error) {
-      toast.error("Failed to cancel order");
+      toast.error("Échec de l'annulation de la commande");
     } finally {
       setIsUpdating(false);
       setShowCancelDialog(false);
@@ -87,18 +87,18 @@ export function OrderStatusSelect({ orderId, currentStatus, onStatusChange }: Or
       <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Cancel Order</AlertDialogTitle>
+            <AlertDialogTitle>Annuler la commande</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to cancel this order? This action cannot be undone and will refund the stock quantities back to inventory.
+              Êtes-vous sûr de vouloir annuler cette commande ? Cette action ne peut pas être annulée et remboursera les quantités de stock à l'inventaire.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>No, keep order</AlertDialogCancel>
+            <AlertDialogCancel>Non, garder la commande</AlertDialogCancel>
             <AlertDialogAction
               onClick={handleCancelConfirm}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
-              Yes, cancel order
+              Oui, annuler la commande
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

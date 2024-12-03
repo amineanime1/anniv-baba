@@ -36,9 +36,9 @@ export function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl font-playfair font-bold mb-4">What Our Customers Say</h2>
+          <h2 className="text-3xl font-playfair font-bold mb-4">Ce que disent nos clients</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it - hear from our satisfied customers across Algeria.
+            Ne vous contentez pas de nous croire sur parole - écoutez nos clients satisfaits à travers l'Algérie.
           </p>
         </motion.div>
 

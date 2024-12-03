@@ -24,7 +24,7 @@ export function RecentOrders() {
         const data = await getOrders();
         setOrders(data.slice(0, 5)); // Get only the 5 most recent orders
       } catch (error) {
-        console.error("Failed to load orders:", error);
+        console.error("Échec du chargement des commandes :", error);
       } finally {
         setIsLoading(false);
       }
@@ -37,7 +37,7 @@ export function RecentOrders() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Recent Orders</CardTitle>
+          <CardTitle>Commandes récentes</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -50,6 +50,9 @@ export function RecentOrders() {
                 <div className="h-4 w-24 bg-muted rounded" />
               </div>
             ))}
+            <p className="text-center text-muted-foreground">
+              Votre panier est vide
+            </p>
           </div>
         </CardContent>
       </Card>
@@ -59,10 +62,10 @@ export function RecentOrders() {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Recent Orders</CardTitle>
+        <CardTitle>Commandes récentes</CardTitle>
         <Link href="/admin/orders">
           <Button variant="ghost" size="sm" className="gap-2">
-            View All <ArrowRight className="h-4 w-4" />
+            Voir tout <ArrowRight className="h-4 w-4" />
           </Button>
         </Link>
       </CardHeader>
@@ -72,7 +75,7 @@ export function RecentOrders() {
             <Link key={order.id} href={`/admin/orders?id=${order.id}`}>
               <div className="flex items-center justify-between p-4 border rounded-lg hover:bg-muted/50 transition-colors cursor-pointer">
                 <div>
-                  <p className="font-medium">Order #{order.id}</p>
+                  <p className="font-medium">Commande #{order.id}</p>
                   <p className="text-sm text-muted-foreground">
                     {order.customer_name}
                   </p>

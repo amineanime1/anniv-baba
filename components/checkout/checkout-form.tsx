@@ -31,11 +31,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const formSchema = z.object({
-  customerName: z.string().min(2, "Name must be at least 2 characters"),
-  customerPhone: z.string().min(10, "Please enter a valid phone number"),
-  customerEmail: z.string().email("Please enter a valid email address").optional().or(z.literal("")),
-  wilaya: z.string().min(1, "Please select your wilaya"),
-  address: z.string().min(10, "Please enter your full address"),
+  customerName: z.string().min(2, "Le nom doit comporter au moins 2 caractères"),
+  customerPhone: z.string().min(10, "Veuillez entrer un numéro de téléphone valide"),
+  customerEmail: z.string().email("Veuillez entrer une adresse e-mail valide").optional().or(z.literal("")),
+  wilaya: z.string().min(1, "Veuillez sélectionner votre wilaya"),
+  address: z.string().min(10, "Veuillez entrer votre adresse complète"),
   notes: z.string().optional(),
 });
 
@@ -69,7 +69,7 @@ export function CheckoutForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (!deliveryFee) {
-      toast.error("Please select a delivery location");
+      toast.error("Veuillez sélectionner un lieu de livraison");
       return;
     }
 
@@ -90,9 +90,9 @@ export function CheckoutForm() {
       
       toast.success(
         <div className="flex flex-col gap-1">
-          <p className="font-semibold">Order Received Successfully!</p>
+          <p className="font-semibold">Commande reçue avec succès !</p>
           {values.customerEmail && (
-            <p className="text-sm">A confirmation email will be sent to your inbox.</p>
+            <p className="text-sm">Un e-mail de confirmation sera envoyé à votre boîte de réception.</p>
           )}
         </div>
       );
@@ -101,7 +101,7 @@ export function CheckoutForm() {
       router.push("/");
     } catch (error) {
       console.error("Order creation error:", error);
-      toast.error("Failed to place order. Please try again.");
+      toast.error("Échec de la commande. Veuillez réessayer.");
     } finally {
       setIsSubmitting(false);
     }
@@ -115,7 +115,7 @@ export function CheckoutForm() {
           name="customerName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel>Nom complet</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" {...field} />
               </FormControl>
@@ -129,7 +129,7 @@ export function CheckoutForm() {
           name="customerPhone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Phone Number</FormLabel>
+              <FormLabel>Numéro de téléphone</FormLabel>
               <FormControl>
                 <Input placeholder="+213 XX XX XX XX" {...field} />
               </FormControl>
@@ -143,12 +143,12 @@ export function CheckoutForm() {
           name="customerEmail"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email (Optional)</FormLabel>
+              <FormLabel>Email (Optionnel)</FormLabel>
               <FormControl>
                 <Input placeholder="john@example.com" {...field} />
               </FormControl>
               <FormDescription>
-                Provide your email to receive order confirmation and updates
+                Fournissez votre e-mail pour recevoir la confirmation et les mises à jour de la commande
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -164,7 +164,7 @@ export function CheckoutForm() {
               <Select onValueChange={handleWilayaChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your wilaya" />
+                    <SelectValue placeholder="Sélectionnez votre wilaya" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -185,7 +185,7 @@ export function CheckoutForm() {
           name="address"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Delivery Address</FormLabel>
+              <FormLabel>Adresse de livraison</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Enter your full delivery address"
@@ -202,10 +202,10 @@ export function CheckoutForm() {
           name="notes"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Order Notes (Optional)</FormLabel>
+              <FormLabel>Notes de commande (Optionnel)</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Any special instructions for delivery?"
+                  placeholder="Des instructions spéciales pour la livraison ?"
                   {...field}
                 />
               </FormControl>
@@ -215,7 +215,7 @@ export function CheckoutForm() {
         />
 
         <Button type="submit" className="w-full" disabled={isSubmitting}>
-          {isSubmitting ? "Processing..." : "Place Order"}
+          {isSubmitting ? "Traitement..." : "Passer la commande"}
         </Button>
       </form>
     </Form>

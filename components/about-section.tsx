@@ -39,7 +39,7 @@ export function AboutSection() {
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            <h2 className="text-3xl font-playfair font-bold">Our Story</h2>
+            <h2 className="text-3xl font-playfair font-bold">Notre Histoire</h2>
             <div className="space-y-4 text-foreground/80">
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -47,9 +47,9 @@ export function AboutSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Welcome to Grandpa's Plant Shop, where our passion for plants meets decades of gardening expertise. 
-                What started as a small family garden has blossomed into Algeria's trusted source for quality plants 
-                and expert advice.
+                Bienvenue chez Grandpa's Plant Shop, où notre passion pour les plantes rencontre des décennies d'expertise en jardinage. 
+                Ce qui a commencé comme un petit jardin familial est devenu la source de confiance de l'Algérie pour des plantes de qualité 
+                et des conseils d'experts.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -57,9 +57,9 @@ export function AboutSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Our mission is simple: to share the joy of gardening and help create beautiful, green spaces in homes 
-                across Algeria. Every plant in our collection is carefully selected and nurtured to ensure it thrives 
-                in its new home.
+                Notre mission est simple : partager la joie du jardinage et aider à créer de beaux espaces verts dans les maisons 
+                à travers l'Algérie. Chaque plante de notre collection est soigneusement sélectionnée et entretenue pour s'assurer qu'elle 
+                prospère dans son nouveau foyer.
               </motion.p>
               <motion.p
                 initial={{ opacity: 0, y: 10 }}
@@ -67,8 +67,8 @@ export function AboutSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                With years of experience in plant care and cultivation, we're not just selling plants – we're 
-                sharing knowledge and passion that spans generations.
+                Avec des années d'expérience dans les soins et la culture des plantes, nous ne vendons pas seulement des plantes – nous 
+                partageons des connaissances et une passion qui s'étendent sur des générations.
               </motion.p>
             </div>
             <motion.div
@@ -79,7 +79,7 @@ export function AboutSection() {
             >
               <Link href="/about">
                 <Button variant="outline" size="lg">
-                  Learn More About Us
+                  En Savoir Plus Sur Nous
                 </Button>
               </Link>
             </motion.div>

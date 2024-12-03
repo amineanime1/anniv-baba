@@ -12,12 +12,12 @@ export async function sendOrderCancellationEmail(order: any) {
         to: order.customer_email,
         subject: `Order #${order.id} Cancelled`,
         html: `
-          <h1>Order Cancellation Confirmation</h1>
-          <p>Dear ${order.customer_name},</p>
-          <p>Your order #${order.id} has been cancelled as requested.</p>
-          <p>The total amount of ${order.total_amount} DZD will be refunded according to your original payment method.</p>
-          <p>If you have any questions, please don't hesitate to contact us.</p>
-          <p>Best regards,<br>Grandpa's Plant Shop Team</p>
+          <h1>Confirmation d'annulation de commande</h1>
+          <p>Cher ${order.customer_name},</p>
+          <p>Votre commande #${order.id} a été annulée comme demandé.</p>
+          <p>Le montant total de ${order.total_amount} DZD sera remboursé selon votre méthode de paiement d'origine.</p>
+          <p>Si vous avez des questions, n'hésitez pas à nous contacter.</p>
+          <p>Cordialement,<br>L'équipe de Grandpa's Plant Shop</p>
         `,
       });
     }

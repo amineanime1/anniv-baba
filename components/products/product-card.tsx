@@ -36,7 +36,7 @@ export function ProductCard({ product }: ProductCardProps) {
             variant="outline"
             onClick={() => addItem(product)}
           >
-            Add to Cart
+            Ajouter au panier
           </Button>
         </div>
       </CardFooter>

@@ -67,7 +67,7 @@ export function ImageUpload({ onImagesUploaded, existingImages = [] }: ImageUplo
         <input {...getInputProps()} />
         <Upload className="mx-auto h-12 w-12 text-gray-400" />
         <p className="mt-2 text-sm text-muted-foreground">
-          {isUploading ? 'Uploading...' : 'Drag & drop images here, or click to select files'}
+          {isUploading ? 'Téléchargement en cours...' : 'Glissez-déposez des images ici, ou cliquez pour sélectionner des fichiers'}
         </p>
       </div>
 

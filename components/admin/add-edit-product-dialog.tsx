@@ -30,11 +30,11 @@ interface Category {
 }
 
 const CATEGORIES: Category[] = [
-  { value: "all", label: "All categories" },
-  { value: "indoor", label: "Indoor Plants" },
-  { value: "outdoor", label: "Outdoor Plants" },
-  { value: "flowering", label: "Flowering Plants" },
-  { value: "cacti", label: "Cacti & Succulents" },
+  { value: "all", label: "Toutes les catégories" },
+  { value: "indoor", label: "Plantes d'intérieur" },
+  { value: "outdoor", label: "Plantes d'extérieur" },
+  { value: "flowering", label: "Plantes à fleurs" },
+  { value: "cacti", label: "Cactus et succulentes" },
 ];
 
 interface AddEditProductDialogProps {
@@ -119,7 +119,7 @@ export function AddEditProductDialog({
           isMobile && "sticky top-0 bg-background/95 backdrop-blur z-10 px-4 py-3 border-b"
         )}>
           <DialogTitle className="text-xl">
-            {product ? "Edit Product" : "Add New Product"}
+            {product ? "Modifier le produit" : "Ajouter un nouveau produit"}
           </DialogTitle>
           {isMobile && (
             <Button
@@ -137,7 +137,7 @@ export function AddEditProductDialog({
             isMobile && "px-4"
           )}>
             <div className="space-y-2">
-              <Label htmlFor="name">Name *</Label>
+              <Label htmlFor="name">Nom *</Label>
               <Input
                 id="name"
                 value={formData.name}
@@ -166,7 +166,7 @@ export function AddEditProductDialog({
               isMobile ? "grid-cols-1" : "grid-cols-2"
             )}>
               <div className="space-y-2">
-                <Label htmlFor="price">Price (DZD) *</Label>
+                <Label htmlFor="price">Prix (DZD) *</Label>
                 <Input
                   id="price"
                   type="number"
@@ -196,7 +196,7 @@ export function AddEditProductDialog({
             </div>
 
             <div className="space-y-2">
-              <Label className="text-base">Category *</Label>
+              <Label className="text-base">Catégorie *</Label>
               <Select
                 value={formData.category}
                 onValueChange={(value) =>
@@ -218,7 +218,7 @@ export function AddEditProductDialog({
             </div>
 
             <div className="space-y-2">
-              <Label className="text-base">Product Images</Label>
+              <Label className="text-base">Images du produit</Label>
               <ImageUpload
                 onImagesUploaded={handleImagesUploaded}
                 existingImages={formData.images}
@@ -237,14 +237,14 @@ export function AddEditProductDialog({
                 type="button"
                 className="h-12"
               >
-                Cancel
+                Annuler
               </Button>
             )}
             <Button type="submit" disabled={isLoading}   className={cn(
                 "h-12 text-base",
                 isMobile && "flex-1"
               )}>
-              {isLoading ? "Saving..." : product ? "Update" : "Create" }
+              {isLoading ? "Enregistrement..." : product ? "Mettre à jour" : "Créer" }
             </Button>
           </div>
         </form>

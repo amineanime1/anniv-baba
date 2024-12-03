@@ -64,28 +64,28 @@ export function DashboardStats() {
 
   const statsData = [
     {
-      title: "Total Orders",
+      title: "Total des commandes",
       value: dashboardStats.totalOrders,
       icon: ShoppingCart,
       href: "/admin/orders",
       color: "text-blue-600",
     },
     {
-      title: "Total Revenue",
+      title: "Revenu total",
       value: `${dashboardStats.totalRevenue} DZD`,
       icon: DollarSign,
       href: "/admin/orders",
       color: "text-green-600",
     },
     {
-      title: "Products",
+      title: "Produits",
       value: dashboardStats.totalProducts,
       icon: Package,
       href: "/admin/products",
       color: "text-purple-600",
     },
     {
-      title: "Pending Delivery",
+      title: "Livraison en attente",
       value: dashboardStats.pendingDeliveries,
       icon: Truck,
       href: "/admin/orders?status=pending",

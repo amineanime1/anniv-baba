@@ -39,11 +39,11 @@ export function OrderSummary() {
 
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
-              <span>Subtotal</span>
+              <span>Sous-total</span>
               <span>{subtotal} DZD</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span>Delivery Fee</span>
+              <span>Frais de livraison</span>
               <span>{deliveryFee} DZD</span>
             </div>
             <Separator className="my-2" />

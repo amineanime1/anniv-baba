@@ -27,7 +27,7 @@ export function FeaturedProducts() {
         if (error) throw error;
         setProducts(data || []);
       } catch (error) {
-        console.error("Error loading featured products:", error);
+        console.error("Erreur lors du chargement des produits en vedette:", error);
       } finally {
         setIsLoading(false);
       }
@@ -47,7 +47,7 @@ export function FeaturedProducts() {
   if (isLoading) {
     return (
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h2 className="text-3xl font-playfair font-bold text-center mb-12">Featured Plants</h2>
+        <h2 className="text-3xl font-playfair font-bold text-center mb-12">Plantes en Vedette</h2>
         <div className="relative">
           <div className="flex gap-4">
             {[1, 2, 3, 4].map((n) => (
@@ -74,7 +74,7 @@ export function FeaturedProducts() {
 
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h2 className="text-3xl font-playfair font-bold text-center mb-12">Featured Plants</h2>
+      <h2 className="text-3xl font-playfair font-bold text-center mb-12">Plantes en Vedette</h2>
       <div className="relative">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
@@ -101,7 +101,7 @@ export function FeaturedProducts() {
                        onClick={(e) => {
                         e.stopPropagation();
                         window.location.href = `/products/${product.id}`;
-                            }}>Add to Cart</Button>
+                            }}>Ajouter au Panier</Button>
                   </CardFooter>
                 </Card>
               </div>

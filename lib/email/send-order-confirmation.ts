@@ -12,21 +12,21 @@ export async function sendOrderConfirmation(order: any) {
         to: order.customer_email,
         subject: `Order Confirmation #${order.id}`,
         html: `
-          <h1>Thank you for your order!</h1>
-          <p>Dear ${order.customer_name},</p>
-          <p>We've received your order and it's being processed. Here are your order details:</p>
+          <h1>Merci pour votre commande !</h1>
+          <p>Cher ${order.customer_name},</p>
+          <p>Nous avons bien reçu votre commande et elle est en cours de traitement. Voici les détails de votre commande :</p>
           
-          <h2>Order Summary</h2>
-          <p>Order Number: #${order.id}</p>
-          <p>Total Amount: ${order.total_amount} DZD</p>
+          <h2>Résumé de la commande</h2>
+          <p>Numéro de commande : #${order.id}</p>
+          <p>Montant total : ${order.total_amount} DZD</p>
           
-          <h2>Delivery Information</h2>
-          <p>Delivery Address: ${order.address}</p>
-          <p>Wilaya: ${order.wilaya}</p>
+          <h2>Informations de livraison</h2>
+          <p>Adresse de livraison : ${order.address}</p>
+          <p>Wilaya : ${order.wilaya}</p>
           
-          <p>We'll notify you when your order has been shipped.</p>
+          <p>Nous vous informerons lorsque votre commande aura été expédiée.</p>
           
-          <p>Best regards,<br>Grandpa's Plant Shop Team</p>
+          <p>Cordialement,<br>L'équipe de Grandpa's Plant Shop</p>
         `,
       });
     }
@@ -37,19 +37,19 @@ export async function sendOrderConfirmation(order: any) {
       to: ADMIN_EMAIL,
       subject: `New Order Received #${order.id}`,
       html: `
-        <h1>New Order Received</h1>
-        <h2>Order Details</h2>
-        <p>Order Number: #${order.id}</p>
-        <p>Customer: ${order.customer_name}</p>
-        <p>Phone: ${order.customer_phone}</p>
-        <p>Email: ${order.customer_email || 'Not provided'}</p>
-        <p>Total Amount: ${order.total_amount} DZD</p>
+        <h1>Nouvelle commande reçue</h1>
+        <h2>Détails de la commande</h2>
+        <p>Numéro de commande : #${order.id}</p>
+        <p>Client : ${order.customer_name}</p>
+        <p>Téléphone : ${order.customer_phone}</p>
+        <p>Email : ${order.customer_email || 'Non fourni'}</p>
+        <p>Montant total : ${order.total_amount} DZD</p>
         
-        <h2>Delivery Information</h2>
-        <p>Address: ${order.address}</p>
-        <p>Wilaya: ${order.wilaya}</p>
+        <h2>Informations de livraison</h2>
+        <p>Adresse : ${order.address}</p>
+        <p>Wilaya : ${order.wilaya}</p>
         
-        <p>Please process this order as soon as possible.</p>
+        <p>Veuillez traiter cette commande dès que possible.</p>
       `,
     });
   } catch (error) {

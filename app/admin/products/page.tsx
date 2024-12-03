@@ -43,9 +43,9 @@ export default function ProductsPage() {
   }
 
   const columns = [
-    { key: "name", label: "Name" },
-    { key: "category", label: "Category" },
-    { key: "price", label: "Price" },
+    { key: "name", label: "Nom" },
+    { key: "category", label: "Catégorie" },
+    { key: "price", label: "Prix" },
     { key: "stock", label: "Stock" },
     { key: "actions", label: "Actions", className: "text-right" },
   ];
@@ -98,7 +98,7 @@ export default function ProductsPage() {
 
   const renderDetails = (item: any) => {
     if (!item) {
-      return <div>No details available</div>;
+      return <div>Aucun détail disponible</div>;
     }
     return (
     <div className="space-y-4">
@@ -114,13 +114,13 @@ export default function ProductsPage() {
       )}
       <div className="grid gap-2">
         <div>
-          <span className="font-medium">Name:</span> {item.name}
+          <span className="font-medium">Nom:</span> {item.name}
         </div>
         <div>
-          <span className="font-medium">Category:</span> {item.category}
+          <span className="font-medium">Catégorie:</span> {item.category}
         </div>
         <div>
-          <span className="font-medium">Price:</span> {item.price}
+          <span className="font-medium">Prix:</span> {item.price}
         </div>
         <div>
           <span className="font-medium">Stock:</span> {item.stock}
@@ -140,18 +140,18 @@ export default function ProductsPage() {
 }
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Chargement...</div>;
   }
 
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Products</h1>
+        <h1 className="text-3xl font-bold">Produits</h1>
         <Button onClick={() => {
           setSelectedProduct(null);
           setIsDialogOpen(true);
         }}>
-          <Plus className="mr-2 h-4 w-4" /> Add Product
+          <Plus className="mr-2 h-4 w-4" /> Ajouter un produit
         </Button>
       </div>
 

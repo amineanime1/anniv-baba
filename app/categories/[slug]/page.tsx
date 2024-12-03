@@ -23,7 +23,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   return (
     <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-playfair font-bold mb-8 capitalize">
-        {params.slug.replace("-", " ")} Plants
+        {params.slug.replace("-", " ")} Plantes
       </h1>
       <ProductGrid 
         filters={{

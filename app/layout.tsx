@@ -18,9 +18,9 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Grandpa's Plant Shop | Your Trusted Source for Plants in Algeria",
-  description: 'Discover a wide selection of beautiful plants, cacti, and gardening supplies. Quality plants with delivery across Algeria.',
-  keywords: 'plants, cacti, gardening, Algeria, plant shop, indoor plants, outdoor plants',
+  title: "La boutique de plantes de grand-père | Votre source de confiance pour les plantes en Algérie",
+  description: 'Découvrez une large sélection de belles plantes, cactus et fournitures de jardinage. Plantes de qualité avec livraison dans toute l\'Algérie.',
+  keywords: 'plantes, cactus, jardinage, Algérie, boutique de plantes, plantes d\'intérieur, plantes d\'extérieur',
 };
 
 export default function RootLayout({

@@ -24,7 +24,7 @@ export function ProductGrid({ filters, sortOrder }: ProductGridProps) {
         const data = await getProducts();
         setProducts(data);
       } catch (error) {
-        console.error("Failed to load products:", error);
+        console.error("Échec du chargement des produits :", error);
       } finally {
         setIsLoading(false);
       }
@@ -82,7 +82,7 @@ export function ProductGrid({ filters, sortOrder }: ProductGridProps) {
   if (sortedAndFilteredProducts.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-lg text-muted-foreground">No products found matching your criteria.</p>
+        <p className="text-lg text-muted-foreground">Aucun produit ne correspond à vos critères.</p>
       </div>
     );
   }

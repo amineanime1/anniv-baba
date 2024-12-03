@@ -43,7 +43,7 @@ export function LowStockAlert() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Low Stock Alert</CardTitle>
+          <CardTitle>Alerte de stock faible</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
@@ -66,11 +66,11 @@ export function LowStockAlert() {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Low Stock Alert</CardTitle>
+          <CardTitle>Alerte de stock faible</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-center text-muted-foreground">
-            No products are running low on stock.
+            Aucun produit n'est en rupture de stock.
           </p>
         </CardContent>
       </Card>
@@ -80,7 +80,7 @@ export function LowStockAlert() {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Low Stock Alert</CardTitle>
+        <CardTitle>Alerte de stock faible</CardTitle>
         <Link href="/admin/products">
           <Button variant="ghost" size="sm" className="gap-2">
             View All <ArrowRight className="h-4 w-4" />
@@ -100,7 +100,7 @@ export function LowStockAlert() {
                 </div>
                 <div className="text-right">
                   <p className="font-medium">Stock: {product.stock}</p>
-                  <Badge variant="destructive">Low Stock</Badge>
+                  <Badge variant="destructive">Stock faible</Badge>
                 </div>
               </div>
             </Link>

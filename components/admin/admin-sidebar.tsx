@@ -22,11 +22,11 @@ import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navigation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Products", href: "/admin/products", icon: Package },
-  { name: "Orders", href: "/admin/orders", icon: ShoppingCart },
-  { name: "Delivery", href: "/admin/delivery", icon: Truck },
-  { name: "Settings", href: "/admin/settings", icon: Settings },
+  { name: "Tableau de bord", href: "/admin", icon: LayoutDashboard },
+  { name: "Produits", href: "/admin/products", icon: Package },
+  { name: "Commandes", href: "/admin/orders", icon: ShoppingCart },
+  { name: "Livraison", href: "/admin/delivery", icon: Truck },
+  { name: "Paramètres", href: "/admin/settings", icon: Settings },
 ];
 
 export function AdminSidebar() {
@@ -60,7 +60,7 @@ export function AdminSidebar() {
       )}>
         {isOpen ? (
           <>
-            <h1 className="text-lg font-semibold">Admin Panel</h1>
+            <h1 className="text-lg font-semibold">Panneau d'administration</h1>
             <div className="flex items-center gap-2">
               {/* <ThemeToggle /> */}
               <Button
@@ -115,7 +115,7 @@ export function AdminSidebar() {
           onClick={handleSignOut}
         >
           <LogOut className="h-5 w-5" />
-          {isOpen && <span className="ml-3">Sign out</span>}
+          {isOpen && <span className="ml-3">Déconnexion</span>}
         </Button>
       </div>
     </div>

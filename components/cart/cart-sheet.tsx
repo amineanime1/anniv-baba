@@ -31,12 +31,12 @@ export function CartSheet() {
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-lg">
         <SheetHeader>
-          <SheetTitle>Shopping Cart</SheetTitle>
+          <SheetTitle>Panier</SheetTitle>
         </SheetHeader>
         <div className="mt-8 space-y-4">
           {items.length === 0 ? (
             <p className="text-center text-muted-foreground">
-              Your cart is empty
+              Votre panier est vide
             </p>
           ) : (
             <>
@@ -51,7 +51,7 @@ export function CartSheet() {
                 </div>
                 <Link href="/checkout" className="w-full">
                   <Button className="w-full" size="lg">
-                    Proceed to Checkout
+                    Passer à la caisse
                   </Button>
                 </Link>
               </div>

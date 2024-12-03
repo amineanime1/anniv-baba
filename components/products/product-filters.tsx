@@ -22,7 +22,7 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
   return (
     <div className="space-y-6">
       <div>
-        <Label>Category</Label>
+        <Label>Catégorie</Label>
         <Select
           value={filters.category}
           onValueChange={(value: string) =>
@@ -30,20 +30,20 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder="All categories" />
+            <SelectValue placeholder="Toutes les catégories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All categories</SelectItem>
-            <SelectItem value="indoor">Indoor Plants</SelectItem>
-            <SelectItem value="outdoor">Outdoor Plants</SelectItem>
-            <SelectItem value="flowering">Flowering Plants</SelectItem>
-            <SelectItem value="cacti">Cacti & Succulents</SelectItem>
+            <SelectItem value="all">Toutes les catégories</SelectItem>
+            <SelectItem value="indoor">Plantes d'intérieur</SelectItem>
+            <SelectItem value="outdoor">Plantes d'extérieur</SelectItem>
+            <SelectItem value="flowering">Plantes à fleurs</SelectItem>
+            <SelectItem value="cacti">Cactus & Succulentes</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       <div>
-        <Label>Price Range</Label>
+        <Label>Gamme de prix</Label>
         <Select
           value={filters.priceRange}
           onValueChange={(value: string) =>
@@ -51,20 +51,20 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder="All prices" />
+            <SelectValue placeholder="Tous les prix" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All prices</SelectItem>
-            <SelectItem value="0-1000">Under 1000 DZD</SelectItem>
+            <SelectItem value="all">Tous les prix</SelectItem>
+            <SelectItem value="0-1000">Moins de 1000 DZD</SelectItem>
             <SelectItem value="1000-2000">1000-2000 DZD</SelectItem>
             <SelectItem value="2000-3000">2000-3000 DZD</SelectItem>
-            <SelectItem value="3000-plus">Over 3000 DZD</SelectItem>
+            <SelectItem value="3000-plus">Plus de 3000 DZD</SelectItem>
           </SelectContent>
         </Select>
       </div>
 
       <div>
-        <Label>Availability</Label>
+        <Label>Disponibilité</Label>
         <Select
           value={filters.availability}
           onValueChange={(value: string) =>
@@ -72,12 +72,12 @@ export function ProductFilters({ filters, setFilters }: FiltersProps) {
           }
         >
           <SelectTrigger>
-            <SelectValue placeholder="All" />
+            <SelectValue placeholder="Tout" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="in-stock">In Stock</SelectItem>
-            <SelectItem value="out-of-stock">Out of Stock</SelectItem>
+            <SelectItem value="all">Tout</SelectItem>
+            <SelectItem value="in-stock">En stock</SelectItem>
+            <SelectItem value="out-of-stock">Rupture de stock</SelectItem>
           </SelectContent>
         </Select>
       </div>

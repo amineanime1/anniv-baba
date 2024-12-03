@@ -89,7 +89,7 @@ className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 p-2 rounded
             <h1 className="text-3xl font-playfair font-bold">{product.name}</h1>
             <div className="flex justify-between items-center mt-2">
               <p className="text-2xl font-semibold">{product.price} DZD</p>
-              <p className="text-sm text-muted-foreground">Added on {formattedDate}</p>
+              <p className="text-sm text-muted-foreground">Ajouté le {formattedDate}</p>
             </div>
           </div>
 
@@ -99,19 +99,19 @@ className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 p-2 rounded
 
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold">Availability</h3>
+              <h3 className="text-lg font-semibold">Disponibilité</h3>
               <span className={cn(
                 "px-3 py-1 rounded-full text-sm",
                 product.stock > 0 
                   ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100"
                   : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100"
               )}>
-                {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
+                {product.stock > 0 ? `${product.stock} en stock` : "Rupture de stock"}
               </span>
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-2">Category</h3>
+              <h3 className="text-lg font-semibold mb-2">Catégorie</h3>
               <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
                 {product.category}
               </span>
@@ -124,7 +124,7 @@ className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 p-2 rounded
             onClick={() => addItem(product)}
             disabled={product.stock === 0}
           >
-            {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+            {product.stock > 0 ? "Ajouter au panier" : "Rupture de stock"}
           </Button>
         </motion.div>
       </div>

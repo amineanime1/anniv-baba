@@ -66,11 +66,11 @@ export default function OrdersPage() {
   }
 
   const columns = [
-    { key: "id", label: "Order ID" },
-    { key: "customer", label: "Customer" },
+    { key: "id", label: "ID de commande" },
+    { key: "customer", label: "Client" },
     { key: "contact", label: "Contact" },
     { key: "total", label: "Total" },
-    { key: "status", label: "Status" },
+    { key: "status", label: "Statut" },
     { key: "date", label: "Date" },
     { key: "actions", label: "Actions", className: "text-right" },
   ];
@@ -130,7 +130,7 @@ export default function OrdersPage() {
 
     const renderDetails = (item: any) => {
     if (!item) {
-      return <div>No details available</div>;
+      return <div>Aucun détail disponible</div>;
     }
   
     return (
@@ -138,10 +138,10 @@ export default function OrdersPage() {
         <div className="grid grid-cols-2 gap-4">
           {item.raw && (
             <div>
-              <h3 className="font-semibold mb-2">Customer Information</h3>
+              <h3 className="font-semibold mb-2">Informations sur le client</h3>
               <div className="space-y-1 text-sm">
                 <p>
-                  <span className="text-muted-foreground">Name:</span>{" "}
+                  <span className="text-muted-foreground">Nom:</span>{" "}
                   {item.raw.customer_name}
                 </p>
                 <p>
@@ -149,17 +149,17 @@ export default function OrdersPage() {
                   {item.raw.customer_email || "N/A"}
                 </p>
                 <p>
-                  <span className="text-muted-foreground">Phone:</span>{" "}
+                  <span className="text-muted-foreground">Téléphone:</span>{" "}
                   {item.raw.customer_phone}
                 </p>
               </div>
             </div>
           )}
           <div>
-            <h3 className="font-semibold mb-2">Order Details</h3>
+            <h3 className="font-semibold mb-2">Détails de la commande</h3>
             <div className="space-y-1 text-sm">
               <p>
-                <span className="text-muted-foreground">Status:</span>{" "}
+                <span className="text-muted-foreground">Statut:</span>{" "}
                 {item.status}
               </p>
               <p>
@@ -173,24 +173,24 @@ export default function OrdersPage() {
         </div>
 
         <div>
-          <h3 className="font-semibold mb-2">Delivery Information</h3>
+          <h3 className="font-semibold mb-2">Informations de livraison</h3>
           <div className="space-y-1 text-sm">
             <p>
               <span className="text-muted-foreground">Wilaya:</span>{" "}
               {item.raw.wilaya}
             </p>
             <p>
-              <span className="text-muted-foreground">Address:</span>{" "}
+              <span className="text-muted-foreground">Adresse:</span>{" "}
               {item.raw.address}
             </p>
             <p>
-              <span className="text-muted-foreground">Delivery Fee:</span>{" "}
+              <span className="text-muted-foreground">Frais de livraison:</span>{" "}
               {item.raw.delivery_fee} DZD
             </p>
           </div>
         </div>
         <div>
-          <h3 className="font-semibold mb-2">Order Items</h3>
+          <h3 className="font-semibold mb-2">Articles de la commande</h3>
           <div className="space-y-4">
             {item.raw.order_items.map((orderItem: any) => (
               <div key={orderItem.id} className="flex items-center space-x-4">
@@ -202,10 +202,10 @@ export default function OrdersPage() {
                 <div>
                   <p className="font-medium">{orderItem.products.name}</p>
                   <p className="text-sm text-muted-foreground">
-                    Quantity: {orderItem.quantity}
+                    Quantité: {orderItem.quantity}
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Price: {orderItem.price_at_time} DZD
+                    Prix: {orderItem.price_at_time} DZD
                   </p>
                 </div>
               </div>
@@ -225,18 +225,18 @@ export default function OrdersPage() {
     );
   };
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Chargement...</div>;
   }
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Orders</h1>
+      <h1 className="text-3xl font-bold">Commandes</h1>
 
       <div className="flex gap-4 items-center">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
           <Input
-            placeholder="Search by customer name..."
+            placeholder="Rechercher par nom de client..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -247,10 +247,10 @@ export default function OrdersPage() {
           onValueChange={setStatusFilter}
         >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Filter by status" />
+            <SelectValue placeholder="Filtrer par statut" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Status</SelectItem>
+            <SelectItem value="all">Tous les statuts</SelectItem>
             {ORDER_STATUS.map((status) => (
               <SelectItem key={status} value={status}>
                 {status.charAt(0).toUpperCase() + status.slice(1)}

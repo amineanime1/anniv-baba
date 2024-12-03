@@ -24,24 +24,24 @@ export function OrderDetailsDialog({ order, open, onOpenChange }: OrderDetailsDi
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Order #{order.id}</DialogTitle>
+          <DialogTitle>Commande #{order.id}</DialogTitle>
         </DialogHeader>
         <ScrollArea className="max-h-[80vh]">
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <h3 className="font-semibold mb-2">Customer Information</h3>
+                <h3 className="font-semibold mb-2">Informations sur le client</h3>
                 <div className="space-y-1 text-sm">
-                  <p><span className="text-muted-foreground">Name:</span> {order.customer_name}</p>
+                  <p><span className="text-muted-foreground">Nom:</span> {order.customer_name}</p>
                   <p><span className="text-muted-foreground">Email:</span> {order.customer_email || 'N/A'}</p>
-                  <p><span className="text-muted-foreground">Phone:</span> {order.customer_phone}</p>
+                  <p><span className="text-muted-foreground">Téléphone:</span> {order.customer_phone}</p>
                 </div>
               </div>
               <div>
-                <h3 className="font-semibold mb-2">Order Details</h3>
+                <h3 className="font-semibold mb-2">Détails de la commande</h3>
                 <div className="space-y-1 text-sm">
                   <p>
-                    <span className="text-muted-foreground">Status:</span>{" "}
+                    <span className="text-muted-foreground">Statut:</span>{" "}
                     <Badge variant={
         order.status === "delivered" ? "delivered" :
         order.status === "cancelled" ? "cancelled" :
@@ -54,17 +54,17 @@ export function OrderDetailsDialog({ order, open, onOpenChange }: OrderDetailsDi
       </Badge>
                   </p>
                   <p><span className="text-muted-foreground">Date:</span> {format(new Date(order.created_at), 'PPP')}</p>
-                  <p><span className="text-muted-foreground">Total Amount:</span> {order.total_amount} DZD</p>
+                  <p><span className="text-muted-foreground">Montant total:</span> {order.total_amount} DZD</p>
                 </div>
               </div>
             </div>
 
             <div>
-              <h3 className="font-semibold mb-2">Delivery Information</h3>
+              <h3 className="font-semibold mb-2">Informations de livraison</h3>
               <div className="space-y-1 text-sm">
                 <p><span className="text-muted-foreground">Wilaya:</span> {order.wilaya}</p>
-                <p><span className="text-muted-foreground">Address:</span> {order.address}</p>
-                <p><span className="text-muted-foreground">Delivery Fee:</span> {order.delivery_fee} DZD</p>
+                <p><span className="text-muted-foreground">Adresse:</span> {order.address}</p>
+                <p><span className="text-muted-foreground">Frais de livraison:</span> {order.delivery_fee} DZD</p>
               </div>
             </div>
 
@@ -77,7 +77,7 @@ export function OrderDetailsDialog({ order, open, onOpenChange }: OrderDetailsDi
 
             {order.order_items && (
               <div>
-                <h3 className="font-semibold mb-4">Order Items</h3>
+                <h3 className="font-semibold mb-4">Articles de la commande</h3>
                 <div className="space-y-4">
                   {order.order_items.map((item: any) => (
                     <div key={item.id} className="flex gap-4 border-b pb-4">
@@ -94,19 +94,19 @@ export function OrderDetailsDialog({ order, open, onOpenChange }: OrderDetailsDi
                       <div className="flex-1">
                         <h4 className="font-medium">{item.products.name}</h4>
                         <div className="mt-1 text-sm text-muted-foreground">
-                          <p>Quantity: {item.quantity}</p>
-                          <p>Price at time: {item.price_at_time} DZD</p>
-                          <p>Subtotal: {item.quantity * item.price_at_time} DZD</p>
+                          <p>Quantité: {item.quantity}</p>
+                          <p>Prix au moment: {item.price_at_time} DZD</p>
+                          <p>Sous-total: {item.quantity * item.price_at_time} DZD</p>
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div className="mt-4 pt-4 border-t flex justify-between items-center font-medium">
-                  <span>Order Summary</span>
+                  <span>Résumé de la commande</span>
                   <div className="text-right">
-                    <p>Subtotal: {order.total_amount - order.delivery_fee} DZD</p>
-                    <p>Delivery Fee: {order.delivery_fee} DZD</p>
+                    <p>Sous-total: {order.total_amount - order.delivery_fee} DZD</p>
+                    <p>Frais de livraison: {order.delivery_fee} DZD</p>
                     <p className="text-lg mt-1">Total: {order.total_amount} DZD</p>
                   </div>
                 </div>
